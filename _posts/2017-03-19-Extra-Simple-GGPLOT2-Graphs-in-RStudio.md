@@ -18,7 +18,7 @@ Year,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec,J-D,D-N,DJF,MAM,JJA,SON
 (...)
 ```
 
-The file contains: years, temperature anomaly for every month, the anomalies' average for the periods January-December, December-November, the anomalies for each quarter of the year. We will only use the first 14 columns, so the year, monthly anomalies and the JanuaryDecember average. To make file ready for use let's get rid of the first row, which is completly useless, save file and then import it to RSTUDIO. We can immediately cut off few columns we won't need.
+The file contains: years, temperature anomaly for every month, the anomalies' average for the periods January-December, December-November, the anomalies for each quarter of the year. We will only use the first 14 columns, so the year, monthly anomalies and the JanuaryDecember average. To make file ready for use let's get rid of the first row, which is completly useless, the last row, as it is incomplete, save file and then import it to RSTUDIO. We can immediately cut off few columns we won't need.
 
 ```r
 > nasa <- read.csv(file="path_to_your_file/GLB.Ts.csv", header=TRUE,sep=",")
@@ -48,16 +48,37 @@ Here's a quick "man" about ggplot (you can have more info about ggplot2 checking
 > data is the  default dataset to use for plot and mapping is the default list of aesthetic mappings to use for plot. If not specified, must be suppled in each layer added to the plot.
 
 Let's try then:
+```
+ggplot(nasa, aes(Year,J.D))
+```
 
+Did anything happen?  No! That's because we need to add layers to our graph. Let's add layer with points.
+```
+ggplot(nasa, aes(Year,J.D)) + geom_point()
+```
+![graph_points](/images/ggplot_points.png)
 
+Of course we can modify the layout of our points:
+```
+ggplot(nasa, aes(Year,J.D)) + geom_point(color="purple",size=5)
+```
+![graph_points](/images/ggplot_points_purple.png)
 
+We can add additional layer, this time with line graph, playing with line color(color="pink") and width(lwd=3)
+```
+ggplot(nasa, aes(Year,J.D)) + geom_point(color="purple",size=5) + geom_line(color="pink",lwd=3)
+```
+![graph_points](/images/ggplot_line_pink.png)
 
-
-
-
-
-
+Ok but let's be serious and check what the graph tells us. We can see that the average temperatures anomalies grows. We can underline it by adding trend line to our graph as the third layer! (pssst, what trend line is? It is a line on a graph showing the general direction that a group of points seem to be heading.)
+```
+ggplot(nasa, aes(Year,J.D)) + geom_point() + geom_line() + geom_smooth(color="red")
+```
+![graph_points](/images/ggplot_trend_line.png)
 ___
 Temperature anomalies indicate how much warmer or colder it is than normal for a particular place and time. For the GISS analysis, normal always means the average over the 30-year period 1951-1980 for that place and time of year. This base period is specific to GISS, not universal. But note that trends do not depend on the choice of the base period: If the absolute temperature at a specific location is 2 degrees higher than a year ago, so is the corresponding temperature anomaly, no matter what base period is selected, since the normal temperature used as base point is the same for both years.
 Note that regional mean anomalies (in particular global anomalies) are not computed from the current absolute mean and the 1951-80 mean for that region, but from station temperature anomalies. Finding absolute regional means encounters significant difficulties that create large uncertainties. This is why the GISS analysis deals with anomalies rather than absolute temperatures. For a more detailed discussion of that topic, please see "The Elusive Absolute Temperature". (source  -> https://data.giss.nasa.gov/gistemp/faq/#q101)
+___
+___
+
 ___

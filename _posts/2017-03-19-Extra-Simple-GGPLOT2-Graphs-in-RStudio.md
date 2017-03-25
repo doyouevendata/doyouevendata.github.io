@@ -185,6 +185,7 @@ ggplot(nasa.reshaped.1991, aes(x=Month,y=Deviation,group=1)) + geom_line()
 The picture is looking sligthly better, but there is one thing ruining it. Can you see it yet? How about quick look on the X axis?
 ![graph_xaxis](/images/xaxis.png)
 
+
 That's right, R had arranged our values alphabetically. Why? Because it's only a computer and doesn't know that months have special order for us, humans. For R months are only useless strings of letters. Let's make it right using FACTOR. What is factor? To read some stale theory go to [https://www.stat.berkeley.edu/classes/s133/factors.html](https://www.stat.berkeley.edu/classes/s133/factors.html). But to put it simply, factor is a type of a variable that can store other variables and give them some VALUE or ORDER (levels). Let's say I have a vector containing ice cream flavours. `flavours <- c("onion","chocolate","vanilla")` With factor, I can define order of flavours making sure that vanilla is the best, and onion is totally gross: 
 ```r
 > flavours <- factor(flavours,levels=c("vanilla","chocolate","onion"))

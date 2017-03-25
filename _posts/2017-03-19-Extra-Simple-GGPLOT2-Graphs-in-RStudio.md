@@ -146,7 +146,7 @@ Did you receive the error message? "geom_path: Each group consists of only one o
 
 >For line graphs, the data points must be grouped so that it knows which points to connect. In this case, it is simple -- all points should be connected, so group=1. When more variables are used and multiple lines are drawn, the grouping for lines is usually done by variable.
 
-Therefore, we add `group = 1` to oue aestethics et voilà:
+Therefore, we add `group = 1` to our aestethics et voilà:
 ```
 ggplot(nasa.reshaped.1991, aes(x=Month,y=Deviation,group=1)) + geom_line()
 ```

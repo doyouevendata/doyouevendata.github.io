@@ -4,10 +4,7 @@ title: Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in 
 ---
 ### Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in RStudio
 
-Hi there! Here we have an Extra Simple, Super Easy tutorial about how to draw graphs in RStudio using ggplot2 package. We will visualize the **temperature anomalies for the past 130 years.**
-
-
-We will be using the **NASA’s Global Mean Estimates Based on Land-Surface Air Temperature Anomalies** from  https://data.giss.nasa.gov/gistemp/ (pssst, what are temperature anomalies,and why prefer them to absolute temperatures? Check the last section of this post to find the answers!). You can download the file with data using this link -> https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv
+Hi there! Here we have an Extra Simple, Super Easy tutorial about how to draw graphs in RStudio using ggplot2 package.  For the purposes of our playground, we will be using the **NASA’s Global Mean Estimates Based on Land-Surface Air Temperature Anomalies** from  https://data.giss.nasa.gov/gistemp/ (pssst, what are temperature anomalies,and why prefer them to absolute temperatures? Check the last section of this post to find the answers!). You can download the file with data using this direct link -> https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv
 
 Let's have a quick look at the content of file:
 ```
@@ -18,7 +15,7 @@ Year,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec,J-D,D-N,DJF,MAM,JJA,SON
 (...)
 ```
 
-The file contains: years, temperature anomaly for every month, the anomalies' average for the periods January-December, December-November, the anomalies for each quarter of the year. We will only use the first 14 columns, so the year, monthly anomalies and the JanuaryDecember average. To make file ready for use let's get rid of the first row (please edi the file in Excel or Notepad), which is completly useless, the last row, as it is incomplete, save file and then import it to RSTUDIO. We can immediately cut off few columns we won't need.
+The file contains: years, temperature anomaly for every month, the anomalies' average for the periods January-December, December-November, the anomalies for each quarter of the year. To make file ready for use let's get rid of the first row (please edit the file in Excel or Notepad), which is completly useless, the last row, as it is incomplete, save the file and then import it to RSTUDIO. We can immediately cut off few columns we won't need (quarterly measurements and average for the December-November period).
 
 ```r
 > nasa <- read.csv(file="path_to_your_file/GLB.Ts.csv", header=TRUE,sep=",")
@@ -39,7 +36,7 @@ We will need ggplot2 package, so if you don’t have it just do this:
 > install.packages("ggplot2")
 > library(ggplot2)
 ```
-Here's a quick "man" about ggplot (you can have more info about ggplot2 checking docs.ggplot2.org or executing `?ggplot` in RStudio):
+Here's a quick info about ggplot (you can have more information checking www.docs.ggplot2.org or executing `?ggplot` in RStudio):
 ```r
 Usage
 ggplot(data = NULL, mapping = aes(), ...)
@@ -67,13 +64,13 @@ ggplot(nasa, aes(Year,J.D)) + geom_point(color="purple",size=5)
 ```
 ![graph_points](/images/ggplot_points_purple.png)
 
-We can add additional layer, this time with line graph, playing with line color(`color="pink"`) and width(`lwd=3`)
+We can add additional layer, this time with line graph, playing with line color (`color="pink"`) and width (`lwd=3`):
 ```r
 ggplot(nasa, aes(Year,J.D)) + geom_point(color="purple",size=5) + geom_line(color="pink",lwd=3)
 ```
 ![graph_points](/images/ggplot_line_pink.png)
 
-Ok but let's be serious and check what the graph tells us. We can see that the average temperatures anomalies grows. We can underline it by adding trend line to our graph as the third layer! (pssst, what trend line is? It is a line on a graph showing the general direction that a group of points seem to be heading.)
+Ok but let's be serious and check what the graph tells us. We can see that the average value of temperatures anomalies grows. We can emphasize it by adding trend line to our graph as the third layer! (pssst, what trend line is? It is a line on a graph showing the general direction that a group of points seem to be heading.)
 ```r
 ggplot(nasa, aes(Year,J.D)) + geom_point() + geom_line() + geom_smooth(color="red")
 ```
@@ -81,7 +78,7 @@ ggplot(nasa, aes(Year,J.D)) + geom_point() + geom_line() + geom_smooth(color="re
 
 
 #### Reshape Method
-Great, we have proved that the average temperatures anomalies grows by showing each year's average on the graph. How about we try to illustrate the average anomalies monthly, for one specific year, let's say 1991, the year when Jackson's album Dangerous was released. As you know, ggplot wants us to tell him which columns goes on the graph. As you see, we don't have a column containing average temperature anomaly for one specific year, we only have rows with that information.
+Great, we have proved that the average temperatures anomalies grows by showing each year's average on the graph. How about we try to illustrate the average anomalies monthly, for one specific year, let's say 1991, the year when Jackson's album Dangerous was released. As you know, ggplot wants us to tell him which columns goes on the graph. As you see, we don't have a column containing average temperature anomaly for one specific year, instead we have rows with that information.
 ```r
 > head(nasa)
   Year   Jan   Feb  Mar  Apr   May   Jun  Jul  Aug  Sep  Oct  Nov   Dec  J.D
@@ -89,21 +86,21 @@ Great, we have proved that the average temperatures anomalies grows by showing e
 2 1881 -0.80 -0.63 -.37 -.28  -.05 -1.15 -.56 -.28 -.34 -.47 -.54  -.13 -.47
 3 1882  0.09 -0.14 -.10 -.62  -.40 -1.05 -.74 -.14 -.10 -.35 -.42  -.70 -.39
 ```
-If only we could give our table one clockwise turn ... But we can ;) We can reshape the table. Before we go to the super-complicated RESHAPE function, let's think about what we wanna achieve and check how the function works. (psst, you can check reshape function help page, just run this command: `?reshape`) There is r-bloggers article about it that is worth checking: https://www.r-bloggers.com/the-reshape-function/. Also, little picture that helps to understand what is going to happen:
+If only we could reshape our table ... But we can ;) Before we go to the super-complicated RESHAPE function, let's think about what we wanna achieve and check how the function works. (psst, you can check reshape function help page, just run this command: `?reshape`) There is r-bloggers article about it that is worth checking: https://www.r-bloggers.com/the-reshape-function/. Also, little picture that helps to understand what is going to happen:
 ![graph_points](/images/transposition.png)
 First, we can remove the J.D column, it is no longer useful.
 ```r
 nasa$J.D <- NULL
 ```
-Then, we need to build our function providing R informations about how our reshaped table should look like. We wanna have all measurements (deviation) in one column and dimension (month) in another. We will transform our data from horizontal (wide) into a vertical (long) format as shown on the picture above. SO, let's tell our function the direction:
+Then, we need to build function providing R informations about how our reshaped table should look like. We wanna have all measurements (deviation) in one column and dimension (month) in another. We will transform our data from horizontal (wide) into a vertical (long) format as shown on the picture above. So, let's start with telling our function the direction:
 ```
 direction="long"
 ```
-All deviations are our measurements. Those will be held in a single column. That column needs a name that we can use to refer to the values later on:
+All deviations are our measurements. Those will be held in a new column. That column needs a name that we can use to refer to the values later on:
 ```r
 v.names = "Deviation"
 ```
-Next step is to fill the new column with data. Currently deviations are held in columns 2 to 13, each as a separate record (row), so  we tello RESHAPE function either:
+Next step is to fill the new column with data. Currently deviations are held in columns 2 to 13, each as a separate record (row), so  we tell RESHAPE function either:
 ```
 varying = 2:13
 ```
@@ -130,10 +127,10 @@ idvar = "Year"
 If the above explanation was not clear at all, don't worry, check another web pages, books, ask someone who knows better, or just copy-paste the below magic code:
  ```r
  nasa.reshaped <- reshape(nasa,
-                          varying = list( c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",                                                 "Aug", "Sep", "Oct", "Nov", "Dec")),
+                          varying = list( c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",                                                                                "Aug", "Sep", "Oct", "Nov", "Dec")),
                           v.names = "Deviation",
                           timevar="Month",
-                          times = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",                                          "Sep", "Oct", "Nov", "Dec"),
+                          times = c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug",                                                                               "Sep", "Oct", "Nov", "Dec"),
                           idvar = "Year",
                           direction = "long")
 ```                          
@@ -210,6 +207,8 @@ This is not pretty, is it?  Again, remembering that **"for line graphs, the data
 ggplot( data=nasa.reshaped, aes( x=Month, y=Deviation, group=Year, colour=Year ) ) + geom_line()
 ```
 ![graph_all_color](/images/all_color.png)
+
+That would be all!
 
 ___
 Temperature anomalies indicate how much warmer or colder it is than normal for a particular place and time. For the GISS analysis, normal always means the average over the 30-year period 1951-1980 for that place and time of year. This base period is specific to GISS, not universal. But note that trends do not depend on the choice of the base period: If the absolute temperature at a specific location is 2 degrees higher than a year ago, so is the corresponding temperature anomaly, no matter what base period is selected, since the normal temperature used as base point is the same for both years.

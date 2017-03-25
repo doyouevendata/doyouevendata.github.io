@@ -94,7 +94,7 @@ nasa$J.D <- NULL
 
 Before we go to the super-complicated table-reshaping function, let`s think about what we wanna achieve. 
 
-![graph_transposition](/images/transposition.jpg)
+![graph_transposition](/images/transposition.png)
 
 
 Now apply some magic:

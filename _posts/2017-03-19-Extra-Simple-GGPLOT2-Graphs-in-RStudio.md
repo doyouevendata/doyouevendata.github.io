@@ -67,7 +67,7 @@ ggplot(nasa, aes(Year,J.D)) + geom_point(color="purple",size=5)
 ```
 ![graph_points](/images/ggplot_points_purple.png)
 
-We can add additional layer, this time with line graph, playing with line color(color="pink") and width(lwd=3)
+We can add additional layer, this time with line graph, playing with line color(`color="pink"`) and width(`lwd=3`)
 ```r
 ggplot(nasa, aes(Year,J.D)) + geom_point(color="purple",size=5) + geom_line(color="pink",lwd=3)
 ```
@@ -79,6 +79,8 @@ ggplot(nasa, aes(Year,J.D)) + geom_point() + geom_line() + geom_smooth(color="re
 ```
 ![graph_points](/images/ggplot_trend_line.png)
 
+
+#### Reshape Method
 Great, we have proved that the average temperatures anomalies grows by showing each year's average on the graph. How about we try to illustrate the average anomalies monthly, for one specific year, let's say 1991, the year when Jackson's album Dangerous was released. As you know, ggplot wants us to tell him which columns goes on the graph. As you see, we don't have a column containing average temperature anomaly for one specific year, we only have rows with that information.
 ```r
 > head(nasa)
@@ -95,7 +97,7 @@ nasa$J.D <- NULL
 Before we go to the super-complicated table-reshaping function, let's think about what we wanna achieve. 
 ![graph_points](/images/transposition.png)
 
-We need to provide R a dataframe to operate on (nasa), a list of variable names that define our different metrics (varying = "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"), the name we wish to give the column containing these values in our dataset (v.names = "Deviation"), the name we wish to give the column describing the different metrics (timevar = "Month"), the values this variable will have (times = "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"), the fact that table should be vertical (direction = "long").
+We need to provide R a dataframe to operate on (`nasa`), a list of variable names that define our different metrics (`varying = "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"`), the name we wish to give the column containing these values in our dataset (`v.names = "Deviation"`), the name we wish to give the column describing the different metrics (`timevar = "Month"`), the values this variable will have (`times = "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"`), the fact that table should be vertical (`direction = "long"`).
 
  Now  some magic:
  ```r
@@ -136,7 +138,7 @@ To select particular year from the dataset we can use:
 1991.Nov 1991   Nov      0.32
 1991.Dec 1991   Dec      0.32
 ```
-So now we can ask ggplotly to draw a line graph using subset nasa.reshaped.1991, columns Month and Deviation.
+So now we can ask ggplotly to draw a line graph using subset `nasa.reshaped.1991`, columns Month and Deviation.
 ```r
 ggplot(nasa.reshaped.1991, aes(x=Month,y=Deviation)) + geom_line()
 ```
@@ -144,14 +146,42 @@ Did you receive the error message? "geom_path: Each group consists of only one o
 
 >For line graphs, the data points must be grouped so that it knows which points to connect. In this case, it is simple -- all points should be connected, so group=1. When more variables are used and multiple lines are drawn, the grouping for lines is usually done by variable.
 
-Therefor, we add group = 1 to oue aestethics et voilà:
-```r
+Therefore, we add `group = 1` to oue aestethics et voilà:
+```
 ggplot(nasa.reshaped.1991, aes(x=Month,y=Deviation,group=1)) + geom_line()
 ```
-![graph_oneyear](/images/oneyear.png)
+![graph_oneyear](/images/ggplot_oneyear.png)
 
+#### Factors and Levels
+The picture is looking sligthly better, but there is one thing ruining it. Can you see it yet? How about quick look on the X axis?
+![graph_xaxis](/images/xaxis.png)
+That's right, R had arranged our values alphabetically. Why? Because it's only a computer and doesn't know that months have special order for us, hoomans. For R months are only useless strings of letters. Let's make it right using FACTOR. What is factor? To read some stale theory go to https://www.stat.berkeley.edu/classes/s133/factors.html. But simply, factor is a type of a variable that can store other variables and give them some VALUE or ORDER (levels). Let's say I have a vector containing ice cream flavours. `flavours <- c("onion","chocolate","vanilla")` With factor, I can define order of flavours making sure that vanilla is the best, and onion is totally gross: 
+```r
+> flavours <- factor(flavours,levels=c("vanilla","chocolate","onion"))
+> flavours
+[1] onion     chocolate vanilla  
+Levels: vanilla chocolate onion
+```
 
+We need to do the same thing with months names. So for the whole `nasa.reshaped` table let's execute:
+```r
+nasa.reshaped$Month <- factor(nasa.reshaped$Month, levels = c("Jan", "Feb", "Mar", 
+                                                                  "Apr", "May", "Jun", 
+                                                                  "Jul", "Aug", "Sep", 
+                                                                  "Oct", "Nov", "Dec"))
+```
 
+Now you can reload data to nasa.reshaped.1991, recreate the graph and check if everything is ok.
+Graph like this can be drawn for every year in our table. How about we try to illustrate monthly temperatures for each year on one picture? (spoiler alert: it will reveal the real growth on temperatures anomalies). For whole `nasa.reshaped` table let's execute:
+```r
+ggplot( data=nasa.reshaped, aes( x=Month, y=Deviation ) ) + geom_line()
+```
+![graph_all_years](/images/all_years.png)
+This is not pretty, is it?  Again, remembering that **"for line graphs, the data points must be grouped so that it knows which points to connect."** we must tell R we wanna group points by year (`group=Year`), so we and up with one line for 1880, one line for 1881, one line for 1882,...., etc. Also, to improve readability, we will add some colour, telling R it should colour lines by year (`colour=Year`).
+```r
+ggplot( data=nasa.reshaped, aes( x=Month, y=Deviation, group=Year, colour=Year ) ) + geom_line()
+```
+![graph_all_color](/images/all_color.png)
 
 ___
 Temperature anomalies indicate how much warmer or colder it is than normal for a particular place and time. For the GISS analysis, normal always means the average over the 30-year period 1951-1980 for that place and time of year. This base period is specific to GISS, not universal. But note that trends do not depend on the choice of the base period: If the absolute temperature at a specific location is 2 degrees higher than a year ago, so is the corresponding temperature anomaly, no matter what base period is selected, since the normal temperature used as base point is the same for both years.

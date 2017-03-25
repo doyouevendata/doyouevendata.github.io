@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Extra Simple GGPLOT2 Graphs in RStudio
+title: Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in RStudio
 ---
 ### Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in RStudio
 
@@ -89,17 +89,45 @@ Great, we have proved that the average temperatures anomalies grows by showing e
 2 1881 -0.80 -0.63 -.37 -.28  -.05 -1.15 -.56 -.28 -.34 -.47 -.54  -.13 -.47
 3 1882  0.09 -0.14 -.10 -.62  -.40 -1.05 -.74 -.14 -.10 -.35 -.42  -.70 -.39
 ```
-If only we could give our table one clockwise turn ... But we can ;) We can reshape the table. Let's do it. First, we can remove the J.D column, it is no longer useful.
+If only we could give our table one clockwise turn ... But we can ;) We can reshape the table. Before we go to the super-complicated RESHAPE function, let's think about what we wanna achieve and check how the function works. (psst, you can check reshape function help page, just run this command: `?reshape`) There is r-bloggers article about it that is worth checking: https://www.r-bloggers.com/the-reshape-function/. Also, little picture that helps to understand what is going to happen:
+![graph_points](/images/transposition.png)
+First, we can remove the J.D column, it is no longer useful.
 ```r
 nasa$J.D <- NULL
 ```
-
-Before we go to the super-complicated table-reshaping function, let's think about what we wanna achieve. 
-![graph_points](/images/transposition.png)
-
-We need to provide R a dataframe to operate on (`nasa`), a list of variable names that define our different metrics (`varying = "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"`), the name we wish to give the column containing these values in our dataset (`v.names = "Deviation"`), the name we wish to give the column describing the different metrics (`timevar = "Month"`), the values this variable will have (`times = "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"`), the fact that table should be vertical (`direction = "long"`).
-
- Now  some magic:
+Then, we need to build our function providing R informations about how our reshaped table should look like. We wanna have all measurements (deviation) in one column and dimension (month) in another. We will transform our data from horizontal (wide) into a vertical (long) format as shown on the picture above. SO, let's tell our function the direction:
+```
+direction="long"
+```
+All deviations are our measurements. Those will be held in a single column. That column needs a name that we can use to refer to the values later on:
+```r
+v.names = "Deviation"
+```
+Next step is to fill the new column with data. Currently deviations are held in columns 2 to 13, each as a separate record (row), so  we tello RESHAPE function either:
+```
+varying = 2:13
+```
+or we can also refer to current columns names:
+```
+varying = list(c(“Jan”, “Feb”, “Mar”, “Apr”, “May”, “Jun”, “Jul”, “Aug”, “Sep”, “Oct”, “Nov”, “Dec”))
+```
+We have now first column with the values (measurements). We need another one with names that will identify what those measurements are (for which month the deviation was measured). Again two ways of doing it:
+```
+times = names(nasa)[2:13]
+```
+or
+```
+times = c(“Jan”, “Feb”, “Mar”, “Apr”, “May”, “Jun”, “Jul”, “Aug”, “Sep”, “Oct”, “Nov”, “Dec”)
+```
+And we need variable that we will use to refer to those values (in other words, column name):
+```
+timevar = "Month"
+```
+Out measurements are grouped based on year they were taken in. We need another column that allow us to identify that grouping.
+```
+idvar = "Year"
+```
+If the above explanation was not clear at all, don't worry, check another web pages, books, ask someone who knows better, or just copy-paste the below magic code:
  ```r
  nasa.reshaped <- reshape(nasa,
                           varying = list( c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",                                                 "Aug", "Sep", "Oct", "Nov", "Dec")),
@@ -109,7 +137,7 @@ We need to provide R a dataframe to operate on (`nasa`), a list of variable name
                           idvar = "Year",
                           direction = "long")
 ```                          
-We received the table with columns: Year, Month, Deviation, and the following values: temperature for January 1880, January 1881, January 1882..... and so on.
+In result, we have received the table with columns: Year, Month, Deviation, and the following values: temperature for January 1880, January 1881, January 1882..... and so on.
 ```r
 > head(nasa.reshaped)
          Year Month Deviation

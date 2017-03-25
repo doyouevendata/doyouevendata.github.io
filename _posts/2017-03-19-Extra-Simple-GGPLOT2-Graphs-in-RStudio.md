@@ -208,7 +208,7 @@ ggplot( data=nasa.reshaped, aes( x=Month, y=Deviation, group=Year, colour=Year )
 ```
 ![graph_all_color](/images/all_color.png)
 
-That would be all! :kissing:
+That would be all!
 
 ___
 Temperature anomalies indicate how much warmer or colder it is than normal for a particular place and time. For the GISS analysis, normal always means the average over the 30-year period 1951-1980 for that place and time of year. This base period is specific to GISS, not universal. But note that trends do not depend on the choice of the base period: If the absolute temperature at a specific location is 2 degrees higher than a year ago, so is the corresponding temperature anomaly, no matter what base period is selected, since the normal temperature used as base point is the same for both years.

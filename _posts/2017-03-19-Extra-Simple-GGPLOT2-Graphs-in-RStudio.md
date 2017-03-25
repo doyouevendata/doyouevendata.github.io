@@ -2,7 +2,7 @@
 layout: post
 title: Extra Simple GGPLOT2 Graphs in RStudio
 ---
-### Extra Simple GGPLOT2 Graphs in RStudio
+### Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in RStudio
 
 Hi there! Here we have an Extra Simple, Super Easy tutorial about how to draw graphs in RStudio using ggplot2 package. We will visualize the **temperature anomalies for the past 130 years.**
 
@@ -40,16 +40,16 @@ We will need ggplot2 package, so if you don’t have it just do this:
 > library(ggplot2)
 ```
 Here's a quick "man" about ggplot (you can have more info about ggplot2 checking docs.ggplot2.org or executing `?ggplot` in RStudio):
+```r
+Usage
+ggplot(data = NULL, mapping = aes(), ...)
 
->Usage
->ggplot(data = NULL, mapping = aes(), ...)
+Typically
+ggplot(dataset, aes(x, y, <other aesthetics>))
 
->Typically
->ggplot(dataset, aes(x, y, <other aesthetics>))
-
->where
-> data is the  default dataset to use for plot and mapping is the default list of aesthetic mappings (which describe how and which data variables are mapped to aesthetic properties of the layer) to use for plot. If not specified, must be suppled in each layer added to the plot.
-
+Where
+data is the  default dataset to use for plot and mapping is the default list of aesthetic mappings (which describe how and which data variables are mapped to aesthetic properties of the layer) to use for plot. If not specified, must be suppled in each layer added to the plot.
+```
 Let's try it then. We will show the average temperature anomaly for each year, telling ggplot that we will use data from dataset called nasa, specifically columns Year and J.D:
 ```r
 ggplot(nasa, aes(Year,J.D))
@@ -120,7 +120,8 @@ We received the table with columns: Year, Month, Deviation, and the following va
 ```
 To select particular year from the dataset we can use:
 ```r
-> nasa.reshaped[nasa.reshaped$Year==1991,]
+> nasa.reshaped.1991 <- nasa.reshaped[nasa.reshaped$Year==1991,]
+> nasa.reshaped.1991
          Year Month Deviation
 1991.Jan 1991   Jan      0.49
 1991.Feb 1991   Feb      0.61
@@ -135,7 +136,22 @@ To select particular year from the dataset we can use:
 1991.Nov 1991   Nov      0.32
 1991.Dec 1991   Dec      0.32
 ```
-So now we can ask ggplotly to draw a graph using 
+So now we can ask ggplotly to draw a line graph using subset nasa.reshaped.1991, columns Month and Deviation.
+```r
+ggplot(nasa.reshaped.1991, aes(x=Month,y=Deviation)) + geom_line()
+```
+Did you receive the error message? "geom_path: Each group consists of only one observation. Do you need to adjust the group aesthetic?" Good! Why is this happening? As **"Cookbook for R, Chapter: Graphs Bar_and_line_graphs_(ggplot2), Line graphs."** says 
+
+>For line graphs, the data points must be grouped so that it knows which points to connect. In this case, it is simple -- all points should be connected, so group=1. When more variables are used and multiple lines are drawn, the grouping for lines is usually done by variable.
+
+Therefor, we add group = 1 to oue aestethics et voilà:
+```r
+ggplot(nasa.reshaped.1991, aes(x=Month,y=Deviation,group=1)) + geom_line()
+```
+![graph_oneyear](/images/oneyear.png)
+
+
+
 
 ___
 Temperature anomalies indicate how much warmer or colder it is than normal for a particular place and time. For the GISS analysis, normal always means the average over the 30-year period 1951-1980 for that place and time of year. This base period is specific to GISS, not universal. But note that trends do not depend on the choice of the base period: If the absolute temperature at a specific location is 2 degrees higher than a year ago, so is the corresponding temperature anomaly, no matter what base period is selected, since the normal temperature used as base point is the same for both years.

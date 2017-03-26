@@ -4,7 +4,7 @@ title: Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in 
 ---
 ### Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in RStudio
 
-Hi there! Here we have an Extra Simple, Super Easy tutorial about how to draw graphs in RStudio using ggplot2 package.  For the purposes of our playground, we will be using the **NASA’s Global Mean Estimates Based on Land-Surface Air Temperature Anomalies** from [https://data.giss.nasa.gov/gistemp/](https://data.giss.nasa.gov/gistemp/)  (pssst, what are temperature anomalies,and why prefer them to absolute temperatures? Check the last section of this post to find the answers!). You can download the file with data using this direct link -> [https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv](https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv)
+Hi there! Here we have an Extra Simple, Super Easy tutorial about how to draw graphs in RStudio using ggplot2 package.  For the purposes of our playground, we will be using the **NASA’s Global Mean Estimates Based on Land-Surface Air Temperature Anomalies** from [https://data.giss.nasa.gov/gistemp/](https://data.giss.nasa.gov/gistemp/)  (pssst, what are temperature anomalies, and why prefer them to absolute temperatures? Check the last section of this post to find the answers!). You can download the file with data using this direct link -> [https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv](https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv)
 
 Let's have a quick look at the content of file:
 ```
@@ -78,7 +78,7 @@ ggplot(nasa, aes(Year,J.D)) + geom_point() + geom_line() + geom_smooth(color="re
 
 
 #### Reshape Method
-Great, we have proved that the average temperatures anomalies grows by showing each year's average on the graph. How about we try to illustrate the average anomalies monthly, for one specific year, let's say 1991, the year when Jackson's album Dangerous was released. As you know, ggplot wants us to tell him which columns goes on the graph. As you see, we don't have a column containing average temperature anomaly for one specific year, instead we have rows with that information.
+Great, we have proved that the average of temperatures anomalies grows by showing each year's average on the graph. How about we try to illustrate the average anomalies monthly, for one specific year, let's say 1991, the year when Jackson's album Dangerous was released. As you know, ggplot wants us to tell him which columns go to the graph. As you see, we don't have a column containing average temperature anomaly for one specific year, instead we have rows with that information.
 ```r
 > head(nasa)
   Year   Jan   Feb  Mar  Apr   May   Jun  Jul  Aug  Sep  Oct  Nov   Dec  J.D
@@ -214,7 +214,7 @@ ggplot( data=nasa.reshaped, aes( x=Month, y=Deviation, group=Year, colour=Year )
 ```
 ![graph_all_color](/images/all_color.png)
 
-That would be all!
+The graph we received is nice, clean and informative (I hope so). That would be all for now! :)
 
 ___
 Temperature anomalies indicate how much warmer or colder it is than normal for a particular place and time. For the GISS analysis, normal always means the average over the 30-year period 1951-1980 for that place and time of year. This base period is specific to GISS, not universal. But note that trends do not depend on the choice of the base period: If the absolute temperature at a specific location is 2 degrees higher than a year ago, so is the corresponding temperature anomaly, no matter what base period is selected, since the normal temperature used as base point is the same for both years.

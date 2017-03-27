@@ -81,7 +81,7 @@ ggplot(nasa, aes(Year,J.D)) + geom_point(color="purple",size=5) + geom_line(colo
 ![graph_points](/images/ggplot_line_pink.png)
 
 <p align="justify">
-Ok but let's be serious and check what the graph tells us. We can see that the average value of temperatures anomalies grows. We can emphasize it by adding trend line to our graph as the third layer! (pssst, what trend line is? It is a line on a graph showing the general direction that a group of points seem to be heading).
+Ok but let's be serious and check what the graph tells us. We can see that the average value of temperature anomalies grows. We can emphasize it by adding trend line to our graph as the third layer! (pssst, what trend line is? It is a line on a graph showing the general direction that a group of points seem to be heading).
 </p>
 ```r
 ggplot(nasa, aes(Year,J.D)) + geom_point() + geom_line() + geom_smooth(color="red")

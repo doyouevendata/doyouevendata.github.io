@@ -4,7 +4,7 @@ title: Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in 
 ---
 ### Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in RStudio
 
-Hi there! Here we have an Extra Simple, Super Easy tutorial about how to draw graphs in RStudio using ggplot2 package.  For the purposes of our playground, we will be using the **NASA’s Global Mean Estimates Based on Land-Surface Air Temperature Anomalies** from [https://data.giss.nasa.gov/gistemp/](https://data.giss.nasa.gov/gistemp/)  (pssst, what are temperature anomalies, and why prefer them to absolute temperatures? Check the last section of this post to find the answers!). You can download the file with data using this direct link -> [https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv](https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv)
+Hi there! Here we have an Extra Simple, Super Easy tutorial about how to draw graphs in RStudio using ggplot2 package.  For the purposes of our playground, we will be using the **NASA’s Global Mean Estimates Based on Land-Surface Air Temperature Anomalies (departures from a long-term average)** from [https://data.giss.nasa.gov/gistemp/](https://data.giss.nasa.gov/gistemp/)  (pssst, what are temperature anomalies, and why prefer them to absolute temperatures? Check the last section of this post to find the answers!). You can download the file with data using this direct link -> [https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv](https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv)
 
 Let's have a quick look at the content of file:
 ```
@@ -15,7 +15,7 @@ Year,Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec,J-D,D-N,DJF,MAM,JJA,SON
 (...)
 ```
 
-The file contains: years, temperature anomaly for every month, the anomalies' average for the periods January-December, December-November, the anomalies for each quarter of the year. To make file ready for use let's get rid of the first row (please edit the file in Excel or Notepad), which is completly useless and the last row, as it is incomplete. Save the file and then import it to RSTUDIO. We can immediately cut off few columns we don't need (quarterly measurements and average for the December-November period).
+The file contains: years, temperature anomaly for every month, the anomalies average for the periods January-December, December-November, the anomalies for each quarter of the year. To make file ready for use let's get rid of the first row (please edit the file in Excel or Notepad), which is completly useless and the last row, as it is incomplete. Save the file and then import it to RSTUDIO. We can immediately cut off few columns we don't need (quarterly measurements and average for the December-November period).
 
 ```r
 > nasa <- read.csv(file="path_to_your_file/GLB.Ts.csv", header=TRUE,sep=",")
@@ -75,10 +75,11 @@ Ok but let's be serious and check what the graph tells us. We can see that the a
 ggplot(nasa, aes(Year,J.D)) + geom_point() + geom_line() + geom_smooth(color="red")
 ```
 ![graph_points](/images/ggplot_trend_line.png)
+![graph_warming](/images/warming.jpg)
 
 
 #### Reshape Method
-Great, we have proved that the average of temperatures anomalies grows by showing each year's average on the graph. How about we try to illustrate the average anomalies monthly, for one specific year, let's say 1991, the year when Jackson's album Dangerous was released. As you know, ggplot wants us to tell him which columns go to the graph. As you see, we don't have a column containing average temperature anomaly for one specific year, instead we have rows with that information.
+Great, we have proved that the annual average grows by showing each year's average on the graph. How about we try to illustrate the average anomalies monthly, for one specific year, let's say 1991, the year when Jackson's album Dangerous was released. As you know, ggplot wants us to tell him which columns go to the graph. As you see, we don't have a column containing average temperature anomaly for one specific year, instead we have rows with that information.
 ```r
 > head(nasa)
   Year   Jan   Feb  Mar  Apr   May   Jun  Jul  Aug  Sep  Oct  Nov   Dec  J.D
@@ -86,7 +87,7 @@ Great, we have proved that the average of temperatures anomalies grows by showin
 2 1881 -0.80 -0.63 -.37 -.28  -.05 -1.15 -.56 -.28 -.34 -.47 -.54  -.13 -.47
 3 1882  0.09 -0.14 -.10 -.62  -.40 -1.05 -.74 -.14 -.10 -.35 -.42  -.70 -.39
 ```
-If only we could reshape our table ... But we can ;) Before we go to the super-complicated RESHAPE function, let's think about what we wanna achieve and check how the function works. (psst, you can check reshape function help page, just run this command: `?reshape`) There is r-bloggers article about it that is worth checking: [https://www.r-bloggers.com/the-reshape-function/](https://www.r-bloggers.com/the-reshape-function/). Also, little picture that helps to understand what is going to happen:
+If only we could reshape our table ... But we can ;) Before we go to the super-complicated RESHAPE function, let's think about what we wanna achieve and check how the function works. (psst, you can check reshape function help page, just run this command: `?reshape`) There is also an article created by r-bloggers about reshape and it's worth checking: [https://www.r-bloggers.com/the-reshape-function/](https://www.r-bloggers.com/the-reshape-function/). And last but not least, little picture that helps to understand what is going to happen:
 ![graph_points](/images/transposition.png)
 First, we can remove the J.D column, it is no longer useful.
 
@@ -138,7 +139,7 @@ nasa.reshaped <- reshape(nasa,
                           idvar = "Year",
                           direction = "long")
 ```
-In result, we have received the table with columns: Year, Month, Deviation, and the following values: temperature for January 1880, January 1881, January 1882..... and so on.
+In result, we have received the table with columns: Year, Month, Deviation, and the following valuesin rows: temperature for January 1880, January 1881, January 1882..... and so on.
 ```r
 > head(nasa.reshaped)
          Year Month Deviation

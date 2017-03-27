@@ -5,7 +5,7 @@ title: Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in 
 <p align="justify">
 ### Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in RStudio
 
-Hi there! Here we have an Extra Simple, Super Easy tutorial about how to draw graphs in RStudio using ggplot2 package.  For the purposes of our playground, we will be using the <b>NASA’s Global Mean Estimates Based on Land-Surface Air Temperature Anomalies (departures from a long-term average)</b> from <a href="https://data.giss.nasa.gov/gistemp">NASA website</a> (pssst, what are temperature anomalies, and why prefer them to absolute temperatures? Check the last section of this post to find the answers!). You can download the file with data using this direct link -> [https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv](https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv)
+Hi there! Here we have an Extra Simple, Super Easy tutorial about how to draw graphs in RStudio using ggplot2 package.  For the purposes of our playground, we will be using the <b>NASA’s Global Mean Estimates Based on Land-Surface Air Temperature Anomalies (departures from a long-term average)</b> from <a href="https://data.giss.nasa.gov/gistemp">NASA website</a> (pssst, what are temperature anomalies, and why prefer them to absolute temperatures? Check the last section of this post to find the answers!). You can download the file with data using <a href="https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv">THIS LINK</a>
 </p>
 
 Let's have a quick look at the content of file:
@@ -41,7 +41,8 @@ We will need ggplot2 package, so if you don’t have it just do this:
 > library(ggplot2)
 ```
 <p align="justify">
-Here's a quick info about ggplot (you can have more information checking www.docs.ggplot2.org or executing </p>`?ggplot` in RStudio):
+Here's a quick info about ggplot (you can have more information checking www.docs.ggplot2.org or executing <code>`?ggplot`</code> in RStudio):
+</p>
 
 ```r
 Usage
@@ -73,7 +74,7 @@ ggplot(nasa, aes(Year,J.D)) + geom_point(color="purple",size=5)
 ![graph_points](/images/ggplot_points_purple.png)
 
 <p align="justify">
-We can add additional layer, this time with line graph, playing with line color </p> (`color="pink"`) and width (`lwd=3`):
+We can add additional layer, this time with line graph, playing with line color (<code>`color="pink"`</code>) and width (<code>`lwd=3`</code>):
 </p>
 
 ```r
@@ -106,7 +107,7 @@ Great, we have proved that the annual average grows by showing each year's avera
 3 1882  0.09 -0.14 -.10 -.62  -.40 -1.05 -.74 -.14 -.10 -.35 -.42  -.70 -.39
 ```
 <p align="justify">
-If only we could reshape our table ... But we can ;) Before we go to the super-complicated RESHAPE function, let's think about what we wanna achieve and check how the function works. (psst, you can check reshape function help page, just run this command: `?reshape`) There is also an article created by r-bloggers about reshape and it's worth checking: </p> [https://www.r-bloggers.com/the-reshape-function/] (https://www.r-bloggers.com/the-reshape-function/). </p>And last but not least, little picture that helps to understand what is going to happen:
+If only we could reshape our table ... But we can ;) Before we go to the super-complicated RESHAPE function, let's think about what we wanna achieve and check how the function works. (psst, you can check reshape function help page, just run this command: <code>`?reshape`</code>) There is an <a href="https://www.r-bloggers.com/the-reshape-function/">article</a> created by r-bloggers about reshape and it's worth checking. Also, I've prepared a little picture that helps to understand what is going to happen:
 </p>
 ![graph_points](/images/transposition.png)
 First, we can remove the J.D column, it is no longer useful.
@@ -212,7 +213,7 @@ Did you receive the error message <b>"geom_path: Each group consists of only one
 </p>
 >For line graphs, the data points must be grouped so that it knows which points to connect. In this case, it is simple -- all points should be connected, so group=1. When more variables are used and multiple lines are drawn, the grouping for lines is usually done by variable.
 
-Therefore, we add `group = 1` to our aestethics et voilà:
+Therefore, we add <code>`group = 1`</code> to our aestethics et voilà:
 ```
 ggplot(nasa.reshaped.1991, aes(x=Month,y=Deviation,group=1)) + geom_line()
 ```
@@ -225,7 +226,7 @@ The picture is looking sligthly better, but there is one thing ruining it. Can y
 ![graph_xaxis](/images/xaxis.png)
 
 <p align="justify">
-That's right, R had arranged our values alphabetically. Why? Because it's only a computer and doesn't know that months have special order for us, humans. For R months are only useless strings of letters. Let's make it right using FACTOR. What is factor? To read some stale theory go to </p>[https://www.stat.berkeley.edu/classes/s133/factors.html](https://www.stat.berkeley.edu/classes/s133/factors.html). <p align="justify">But to put it simply, factor is a type of a variable that can store other variables and give them some VALUE or ORDER (levels). Let's say I have a vector containing ice cream flavours. </p>(`flavours <- c("onion","chocolate","vanilla")`). <p align="justify">With factor, I can define order of flavours making sure that vanilla is the best, and onion is totally gross:
+That's right, R had arranged our values alphabetically. Why? Because it's only a computer and doesn't know that months have special order for us, humans. For R months are only useless strings of letters. Let's make it right using FACTOR. What is factor? To read some stale theory go to <a href="https://www.stat.berkeley.edu/classes/s133/factors.html">this page</a>. But to put it simply, factor is a type of a variable that can store other variables and give them some VALUE or ORDER (levels). Let's say I have a vector containing ice cream flavours (<code>`flavours <- c("onion","chocolate","vanilla")`</code>). With factor, I can define order of flavours making sure that vanilla is the best, and onion is totally gross:
 </p>
 
 ```r
@@ -245,15 +246,15 @@ nasa.reshaped$Month <- factor(nasa.reshaped$Month, levels = c("Jan", "Feb", "Mar
 
 <p align="justify">
 Now you can reload data to nasa.reshaped.1991, recreate the graph and check if everything is ok.
-Graph like this can be drawn for every year in our table. How about we try to illustrate monthly temperatures for each year on one picture? (spoiler alert: it will reveal the real growth on temperatures anomalies). For whole </p>`nasa.reshaped` <p align="justify"> table let's execute:
+Graph like this can be drawn for every year in our table. How about we try to illustrate monthly temperatures for each year on one picture? (spoiler alert: it will reveal the real growth on temperatures anomalies). For whole <code>`nasa.reshaped`</code> table let's execute:
 </p>
 ```r
 ggplot( data=nasa.reshaped, aes( x=Month, y=Deviation ) ) + geom_line()
 ```
 ![graph_all_years](/images/all_years.png)
 <p align="justify">
-This is not pretty, is it?  Again, remembering that <b>"for line graphs, the data points must be grouped so that it knows which points to connect."</b>, we must tell R we want to group points by year (`group=Year`), so we end up with one line for 1880, one line for 1881, one line for 1882,...., etc. Also, to improve readability, we will add some colour, telling R it should colour lines by year </p> (`colour=Year`).
-
+This is not pretty, is it?  Again, remembering that <b>"for line graphs, the data points must be grouped so that it knows which points to connect."</b>, we must tell R we want to group points by year (`group=Year`), so we end up with one line for 1880, one line for 1881, one line for 1882,...., etc. Also, to improve readability, we will add some colour, telling R it should colour lines by year (<code>`colour=Year`</code>).
+ </p>
 ```r
 ggplot( data=nasa.reshaped, aes( x=Month, y=Deviation, group=Year, colour=Year ) ) + geom_line()
 ```
@@ -263,6 +264,6 @@ The graph we received is nice, clean and informative (I hope so). That would be 
 
 <p align="justify">
 Temperature anomalies indicate how much warmer or colder it is than normal for a particular place and time. For the GISS analysis, normal always means the average over the 30-year period 1951-1980 for that place and time of year. This base period is specific to GISS, not universal. But note that trends do not depend on the choice of the base period: If the absolute temperature at a specific location is 2 degrees higher than a year ago, so is the corresponding temperature anomaly, no matter what base period is selected, since the normal temperature used as base point is the same for both years.
-Note that regional mean anomalies (in particular global anomalies) are not computed from the current absolute mean and the 1951-80 mean for that region, but from station temperature anomalies. Finding absolute regional means encounters significant difficulties that create large uncertainties. This is why the GISS analysis deals with anomalies rather than absolute temperatures. For a more detailed discussion of that topic, please see "The Elusive Absolute Temperature". (source  -> </p> [https://data.giss.nasa.gov/gistemp/faq/#q101](https://data.giss.nasa.gov/gistemp/faq/#q101))
-
+Note that regional mean anomalies (in particular global anomalies) are not computed from the current absolute mean and the 1951-80 mean for that region, but from station temperature anomalies. Finding absolute regional means encounters significant difficulties that create large uncertainties. This is why the GISS analysis deals with anomalies rather than absolute temperatures. For a more detailed discussion of that topic, please see "The Elusive Absolute Temperature". (<a href="https://data.giss.nasa.gov/gistemp/faq/#q101">SOURCE</a>)
+</p>
 

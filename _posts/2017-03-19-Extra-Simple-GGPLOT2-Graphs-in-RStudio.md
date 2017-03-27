@@ -75,11 +75,10 @@ Ok but let's be serious and check what the graph tells us. We can see that the a
 ggplot(nasa, aes(Year,J.D)) + geom_point() + geom_line() + geom_smooth(color="red")
 ```
 ![graph_points](/images/ggplot_trend_line.png)
-<p align="center">
 ![graph_warming](/images/warming.png)
+<p align="center">
+  <img src="/images/warming.png">
 </p>
-->![graph_warming](/images/warming.png)<-
-
 
 #### Reshape Method
 Great, we have proved that the annual average grows by showing each year's average on the graph. How about we try to illustrate the average anomalies monthly, for one specific year, let's say 1991, the year when Jackson's album Dangerous was released. As you know, ggplot wants us to tell him which columns go to the graph. As you see, we don't have a column containing average temperature anomaly for one specific year, instead we have rows with that information.

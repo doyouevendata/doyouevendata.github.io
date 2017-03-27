@@ -12,4 +12,4 @@ Greetings. We're a group of people interested in data. Working with Hadoop, stud
 
 ### Contact me
 
-[email@domain.com](mailto:workplejs@gmail.com)
+[workplejs@gmail.com](mailto:workplejs@gmail.com)

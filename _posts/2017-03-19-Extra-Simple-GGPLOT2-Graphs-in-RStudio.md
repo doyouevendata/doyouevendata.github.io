@@ -39,7 +39,7 @@ We will need ggplot2 package, so if you don’t have it just do this:
 > library(ggplot2)
 ```
 <p align="justify">
-Here's a quick info about ggplot (you can have more information checking www.docs.ggplot2.org or executing <code>?ggplot</code> in RStudio):
+Here's a quick info about ggplot (you can have more information checking <a href="www.docs.ggplot2.or">www.docs.ggplot2.org</a> or executing <code>?ggplot</code> in RStudio):
 </p>
 
 ```r
@@ -105,7 +105,7 @@ Great, we have proved that the annual average grows by showing each year's avera
 3 1882  0.09 -0.14 -.10 -.62  -.40 -1.05 -.74 -.14 -.10 -.35 -.42  -.70 -.39
 ```
 <p align="justify">
-If only we could reshape our table ... But we can ;) Before we go to the super-complicated RESHAPE function, let's think about what we wanna achieve and check how the function works. (psst, you can check reshape function help page, just run this command: <code>?reshape</code>) There is an <a href="https://www.r-bloggers.com/the-reshape-function/">article</a> created by r-bloggers about reshape and it's worth checking. Also, I've prepared a little picture that helps to understand what is going to happen:
+If only we could reshape our table ... But we can ;) Before we go to the super-complicated RESHAPE function, let's think about what we wanna achieve and check how the function works (psst, you can check reshape function help page, just run this command: <code>?reshape</code>). There is an <a href="https://www.r-bloggers.com/the-reshape-function/">article</a> created by r-bloggers about reshape and it's worth checking. Also, I've prepared a little picture that helps to understand what is going to happen:
 </p>
 ![graph_points](/images/transposition.png)
 First, we can remove the J.D column, it is no longer useful.
@@ -169,7 +169,7 @@ nasa.reshaped <- reshape(nasa,
                           direction = "long")
 ```
 <p align="justify">
-In result, we have received the table with columns: Year, Month, Deviation, and the following valuesin rows: temperature for January 1880, January 1881, January 1882 ..... and so on.
+In result, we have received the table with columns: Year, Month, Deviation, and the following values in rows: temperature anomaly for January 1880, January 1881, January 1882 ..... and so on.
 </p>
 
 ```r
@@ -201,7 +201,7 @@ To select particular year from the dataset we can use:
 1991.Dec 1991   Dec      0.32
 ```
 <p align="justify">
-So now we can ask ggplotly to draw a line graph using subset <code>nasa.reshaped.1991</code>, columns Month and Deviation.
+So now we can ask ggplot to draw a line graph using subset <code>nasa.reshaped.1991</code>, columns <code>Month</code> and <code>Deviation</code>.
 </p>
 ```r
 ggplot(nasa.reshaped.1991, aes(x=Month,y=Deviation)) + geom_line()
@@ -251,7 +251,7 @@ ggplot( data=nasa.reshaped, aes( x=Month, y=Deviation ) ) + geom_line()
 ```
 ![graph_all_years](/images/all_years.png)
 <p align="justify">
-This is not pretty, is it?  Again, remembering that <b>"for line graphs, the data points must be grouped so that it knows which points to connect."</b>, we must tell R we want to group points by year (<code>group=Year</code>), so we end up with one line for 1880, one line for 1881, one line for 1882,...., etc. Also, to improve readability, we will add some colour, telling R it should colour lines by year (<code>colour=Year</code>).
+This is not pretty, is it?  Again, remembering that <b>"for line graphs, the data points must be grouped so that it knows which points to connect."</b>, we must tell R we want to group points by year (<code>group=Year</code>), so we end up with one line for 1880, one line for 1881, one line for 1882, (...), etc. Also, to improve readability, we will add some colour, telling R it should colour lines by year (<code>colour=Year</code>).
  </p>
 ```r
 ggplot( data=nasa.reshaped, aes( x=Month, y=Deviation, group=Year, colour=Year ) ) + geom_line()
@@ -262,7 +262,7 @@ The graph we received is nice, clean and informative (I hope so). That would be 
 
 ___
 <p align="justify">
-<sup>1</sup> Temperature anomalies indicate how much warmer or colder it is than normal for a particular place and time. For the GISS analysis, normal always means the average over the 30-year period 1951-1980 for that place and time of year. This base period is specific to GISS, not universal. But note that trends do not depend on the choice of the base period: If the absolute temperature at a specific location is 2 degrees higher than a year ago, so is the corresponding temperature anomaly, no matter what base period is selected, since the normal temperature used as base point is the same for both years.
+<sup>1</sup>Temperature anomalies indicate how much warmer or colder it is than normal for a particular place and time. For the GISS analysis, normal always means the average over the 30-year period 1951-1980 for that place and time of year. This base period is specific to GISS, not universal. But note that trends do not depend on the choice of the base period: If the absolute temperature at a specific location is 2 degrees higher than a year ago, so is the corresponding temperature anomaly, no matter what base period is selected, since the normal temperature used as base point is the same for both years.
 Note that regional mean anomalies (in particular global anomalies) are not computed from the current absolute mean and the 1951-80 mean for that region, but from station temperature anomalies. Finding absolute regional means encounters significant difficulties that create large uncertainties. This is why the GISS analysis deals with anomalies rather than absolute temperatures. For a more detailed discussion of that topic, please see "The Elusive Absolute Temperature". (<a href="https://data.giss.nasa.gov/gistemp/faq/#q101">SOURCE</a>)
 </p>
 

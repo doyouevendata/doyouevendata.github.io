@@ -75,7 +75,10 @@ Ok but let's be serious and check what the graph tells us. We can see that the a
 ggplot(nasa, aes(Year,J.D)) + geom_point() + geom_line() + geom_smooth(color="red")
 ```
 ![graph_points](/images/ggplot_trend_line.png)
+<p align="center">
 ![graph_warming](/images/warming.png)
+</p>
+->![graph_warming](/images/warming.png)<-
 
 
 #### Reshape Method

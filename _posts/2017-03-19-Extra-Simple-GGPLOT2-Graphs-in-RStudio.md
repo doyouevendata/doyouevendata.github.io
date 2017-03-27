@@ -2,10 +2,11 @@
 layout: post
 title: Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in RStudio
 ---
-### Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in RStudio
 <p align="justify">
-Hi there! Here we have an Extra Simple, Super Easy tutorial about how to draw graphs in RStudio using ggplot2 package.  For the purposes of our playground, we will be using the <b>NASA’s Global Mean Estimates Based on Land-Surface Air Temperature Anomalies (departures from a long-term average)</b> from </p>[https://data.giss.nasa.gov/gistemp/](https://data.giss.nasa.gov/gistemp/)  <p align="justify"> (pssst, what are temperature anomalies, and why prefer them to absolute temperatures? Check the last section of this post to find the answers!). You can download the file with data using this direct link -> </p>[https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv](https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv)
+### Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in RStudio
 
+Hi there! Here we have an Extra Simple, Super Easy tutorial about how to draw graphs in RStudio using ggplot2 package.  For the purposes of our playground, we will be using the <b>NASA’s Global Mean Estimates Based on Land-Surface Air Temperature Anomalies (departures from a long-term average)</b> from <a href="https://data.giss.nasa.gov/gistemp">NASA website</a> (pssst, what are temperature anomalies, and why prefer them to absolute temperatures? Check the last section of this post to find the answers!). You can download the file with data using this direct link -> [https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv](https://data.giss.nasa.gov/gistemp/tabledata_v3/GLB.Ts.csv)
+</p>
 
 Let's have a quick look at the content of file:
 ```

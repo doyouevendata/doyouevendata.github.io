@@ -1,6 +1,6 @@
 ---
 layout: post
-title:Graphs generated dynamically on hover (using R, shiny and plotly)
+title: Graphs generated dynamically on hover (using R, shiny and plotly)
 ---
 
 <p align="justify">
@@ -69,12 +69,16 @@ server <- function(input, output) {
 }
 ```
 <p align="justify">
-We wanna tell our script few things. First, we will use plotly, so he should have <code>library(plotly)</code> included just above <code>library(shiy)</code>. Also, he has to know that we have created 2 areas to plot graphs, called <code>plot</code> and<code>plot2</code> and and the output of our actions should be directed to them. Hence:</p>
+We wanna tell our script few things. First, we will use plotly, so he should have <code>library(plotly)</code> included just above <code>library(shiy)</code>.Then, we have import the data he will work on. Also, he has to know that we have created 2 areas to plot graphs, called <code>plot</code> and<code>plot2</code> and and the output of our actions should be directed to them. Hence:</p>
 ```r
 library(shiny)
 library(plotly)
 
 server <- function(input, output) {
+
+monthly <- read.csv(file="path_to_monthly_file.csv",sep=",",header=TRUE)
+annual <- read.csv(file="path_to_annual_file.csv",sep=",",header=TRUE)
+
   output$plot <- renderPlotly({   
   
     })
@@ -93,29 +97,9 @@ server <- function(input, output) {
 <p align="justify">Now we can go straight to the point, which means building graphs! Building the first, static graph will be very easy (its level: one-line-easiness). We only have to tell <code>plotly</code> "dude, take my annual dataset, put Years on Y axis, put temperature anomalies on Y axis, print it as a line", translate it to plotly language and place in the first plot output:</p>
 ```r
 output$plot <- renderPlotly({
-    plot_ly(nasa, x=~Year, y=~J.D, type = "scatter", mode="lines")
+    plot_ly(annual, x=~Year, y=~J.D, mode="lines")
 })
 ```
 <p align="justify">By the way, <code>plotly</code> is an awesome tool, so awesome you should go right now to <a href="https://plot.ly/feed/">its page</a> and learn more about it. If you are too lazy to do that, just type <code>?plotly</code> into R console.
 
-    Let's load data into R tables:
-```r
-> monthly <- read.csv(file="path_to_monthly_file.csv",sep=",",header=TRUE)
-> head(monthly)
-         Year Month Deviation
-1880.Jan 1880   Jan     -0.84
-1881.Jan 1881   Jan     -0.80
-1882.Jan 1882   Jan      0.09
-1883.Jan 1883   Jan     -0.71
-1884.Jan 1884   Jan     -0.64
-1885.Jan 1885   Jan     -0.97
-> annual <- read.csv(file="path_to_annual_file.csv",sep=",",header=TRUE)
-> head(annual)
-  Year   J.D
-1 1880 -0.50
-2 1881 -0.47
-3 1882 -0.39
-4 1883 -0.41
-5 1884 -0.70
-6 1885 -0.57
-```
+   

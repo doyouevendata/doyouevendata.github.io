@@ -1,12 +1,7 @@
 ---
 layout: post
-title: Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in RStudio
+title:Graphs generated dynamically on hover (using R and plotly)
 ---
-<p align="justify">
-
-</p>
-
-##Graphs generated dynamically on hover (using R and plotly)
 <p align="justify">
 Hello! Recently I was asked to create an R program showing one graph and dynamically generating another using the information about mouse position over the first graph. It is not as difficult as I thought, so here's the tutorial.
 </p>

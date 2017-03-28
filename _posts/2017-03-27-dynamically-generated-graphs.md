@@ -126,7 +126,7 @@ And plot a graph:
 ```r
 plot_ly(monthly_subset, x=~Month, y=~Deviation, mode="points + lines")
 ```
-So to sum this part up, this is what your output$plot2 should look like:
+So to sum this part up, this is what your `output$plot2` should look like:
 ```r
   output$plot2 <- renderPlotly({
     mouse_event <- event_data("plotly_hover")

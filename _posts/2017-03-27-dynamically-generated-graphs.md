@@ -32,7 +32,8 @@ library("shiny")
 You can download data files from <a href="">here</a> and <a href="">here</a>. These are excel sheets prepared from the data availaible on NASA page (<a href="">link</a>). Nasa's data looks like that:
 </p>
 ![image_sketch](/images/dynamic_histogram/all_table.png)
-It contains the year, average temperature anomaly for each month (January to December), than the average values for periods January-December, December-November and each quarter. What we've created from it:
+<p align="justify">
+It contains the year, average temperature anomaly for each month (January to December), than the average values for periods January-December, December-November and each quarter. What we've created from it:</p>
 ![image_sketch](/images/dynamic_histogram/tables.png)
 
 

@@ -1,7 +1,8 @@
 ---
 layout: post
-title:Graphs generated dynamically on hover (using R and plotly)
+title:Graphs generated dynamically on hover (using R, shiny and plotly)
 ---
+
 <p align="justify">
 Hello! Recently I was asked to create an R program showing one graph and dynamically generating another using the information about mouse position over the first graph. It is not as difficult as I thought, so here's the tutorial.
 </p>
@@ -34,7 +35,70 @@ You can download data files from <a href="">here</a> and <a href="">here</a>. Th
 It contains the year, average temperature anomaly for each month (January to December), than the average values for periods January-December, December-November and each quarter. What we've created from it:
 ![image_sketch](/images/dynamic_histogram/tables.png)
 
-Let's load data into R tables:
+
+<p align="justify">
+Now, our program has 2 components and their schema is imposed by Shiny. You can learn more about Shiny by visiting their website <a href="www.shiny.rstudio.com">www.shiny.rstudio.com</a>
+</p>
+
+We will start with ui.R, which by default looks like that:
+```r
+library(shiny)
+ui <- fluidPage(
+
+)
+```
+We will add few lines:
+```r
+h2("Average temperature anomaly for each year in 1880-2016 period"),
+plotlyOutput("plot"),
+h2("Monthly temperature anomaly for specific year"),
+plotlyOutput("plot2")
+ ```
+where:
+`h2("Average temperature anomaly for each year in 1880-2016 period")` is the header of first section
+`plotlyOutput("plot")` is the place for output of the plotly function (the graph) we will call plot
+`h2("Monthly temperature anomaly for specific year")` is the header of second section
+`plotlyOutput("plot2")` is the place for output of the plotly function (the graph) we will call plot2
+
+<p align="justify">
+If we are minimalists and don't need our program to be fancy-looking, this is all we have to do. Now, to the server.R part! By default, it looks like that:</p>
+```r
+library(shiny)
+server <- function(input, output) {
+
+}
+```
+<p align="justify">
+We wanna tell our script few things. First, we will use plotly, so he should have <code>library(plotly)</code> included just above <code>library(shiy)</code>. Also, he has to know that we have created 2 areas to plot graphs, called <code>plot</code> and<code>plot2</code> and and the output of our actions should be directed to them. Hence:</p>
+```r
+library(shiny)
+library(plotly)
+
+server <- function(input, output) {
+  output$plot <- renderPlotly({   
+  
+    })
+  
+  output$plot2 <- renderPlotly({    
+  
+    })
+}
+```
+<p align="justify">We will wrap all the actions generating graphs in a call to <code>renderPlot</code> to indicate that:</p>
+  
+   * It is "reactive" and therefore should re-execute automatically
+       when inputs change
+   * Its output type is a plot
+    
+<p align="justify">Now we can go straight to the point, which means building graphs! Building the first, static graph will be very easy (its level: one-line-easiness). We only have to tell <code>plotly</code> "dude, take my annual dataset, put Years on Y axis, put temperature anomalies on Y axis, print it as a line", translate it to plotly language and place in the first plot output:</p>
+```r
+output$plot <- renderPlotly({
+    plot_ly(nasa, x=~Year, y=~J.D, type = "scatter", mode="lines")
+})
+```
+<p align="justify">By the way, <code>plotly</code> is an awesome tool, so awesome you should go right now to <a href="https://plot.ly/feed/">its page</a> and learn more about it. If you are too lazy to do that, just type <code>?plotly</code> into R console.
+
+    Let's load data into R tables:
 ```r
 > monthly <- read.csv(file="path_to_monthly_file.csv",sep=",",header=TRUE)
 > head(monthly)
@@ -55,17 +119,3 @@ Let's load data into R tables:
 5 1884 -0.70
 6 1885 -0.57
 ```
-Now, our program has 2 components and their schema is imposed by Shiny. You can learn more about Shiny by visiting their website www.shiny.rstudio.com 
-
-We will start with ui.R, adding few lines:
-
-
-
-
-
-   Expression that generates a histogram. The expression is
-  wrapped in a call to renderPlot to indicate that:
-  
-    1) It is "reactive" and therefore should re-execute automatically
-       when inputs change
-    2) Its output type is a plot

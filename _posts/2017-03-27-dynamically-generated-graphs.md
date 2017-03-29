@@ -6,6 +6,7 @@ title: Graphs generated dynamically on hover (using R, shiny and plotly)
 <p align="justify">
 Hello! Recently I was asked to create an R program showing one graph and dynamically generating another using the information about mouse position over the first graph. It is not as difficult as I thought, so here's the tutorial.
 </p>
+
 #### What we wanna achieve?
 <p align="justify">
 We're gonna create a simple R application showing annual and monthly average temperature anomalies. On one static graph we will illustrate the annual  average temperature anomalies, showing that they are constantly growing. While moving the mouse over this graph, we will dynamically generate another graph, which will illustrate monthly average temperature anomalies for the specific year our mouse is pointing to. Let me show this idea on a picture.
@@ -111,6 +112,7 @@ annual <- read.csv(file="path_to_annual_file.csv",sep=",",header=TRUE)
    * Its output type is a plot
     
  #### Plotting graphs.
+ 
 <p align="justify">Now we can go straight to the point, which means plotting graphs! Building the first, static graph will be very easy (its level: one-line-easiness). We only have to tell <code>plotly</code> "dude, take my annual dataset, put Years on Y axis, put temperature anomalies on Y axis, make it a scatter chart, where data are presented as line", translate it to plotly language and place in the first plot output:</p>
 
 ```r

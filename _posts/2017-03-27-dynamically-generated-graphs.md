@@ -51,13 +51,19 @@ ui <- fluidPage(
 ```
 We will add few lines:
 ```r
-h2("Average temperature anomaly for each year in 1880-2016 period"),
-plotlyOutput("plot"),
-h2("Monthly temperature anomaly for specific year"),
-plotlyOutput("plot2")
+library(shiny)
+library(plotly)
+
+ui <- fluidPage(
+    h2("Average temperature anomaly for each year in 1880-2016 period"),
+    plotlyOutput("plot"),
+    h2("Monthly temperature anomaly for specific year"),
+    plotlyOutput("plot2")
+)
  ```
 where:
 
+* `library(plotly)` information that we gonna use plotly library
 * `h2("Average temperature anomaly for each year in 1880-2016 period")` is the header of first section
 * `plotlyOutput("plot")` is the place for output of the plotly function (the graph) we will call plot
 * `h2("Monthly temperature anomaly for specific year")` is the header of second section
@@ -168,3 +174,5 @@ So to sum this part up, this is what your `output$plot2` should look like:
   })
   
 <p align="justify">Are you ready to see the final result?</p>
+
+<iframe src="https://ymra.shinyapps.io/online/">

@@ -85,7 +85,7 @@ server <- function(input, output) {
 }
 ```
 <p align="justify">
-We wanna tell our script few things. First, we will use plotly, so he should have <code>library(plotly)</code> included just above <code>library(shiy)</code>.Then, we have import the data he will work on. Also, he has to know that we have created 2 areas to plot graphs, called <code>plot</code> and<code>plot2</code> and and the output of our actions should be directed to them. Hence:</p>
+We wanna tell our script few things. First, we will use plotly, so we should add <code>library(plotly)</code> just below <code>library(shiny)</code>.Then, we have to import the data we will work on. Also, script has to know that we have created 2 areas to plot graphs, called <code>plot</code> and<code>plot2</code> and the output of our actions should be directed to them. Hence:</p>
 
 ```r
 library(shiny)
@@ -113,7 +113,7 @@ annual <- read.csv(file="path_to_annual_file.csv",sep=",",header=TRUE)
     
  #### Plotting graphs.
  
-<p align="justify">Now we can go straight to the point, which means plotting graphs! Building the first, static graph will be very easy (its level: one-line-easiness). We only have to tell <code>plotly</code> "dude, take my annual dataset, put Years on Y axis, put temperature anomalies on Y axis, make it a scatter chart, where data are presented as line", translate it to plotly language and place in the first plot output:</p>
+<p align="justify">Now we can go straight to the point, which means plotting graphs! Building the first, static graph will be very easy (level: one-line-easiness). We only have to tell <code>plotly</code> "dude, take my annual dataset, put Years on Y axis, put temperature anomalies on Y axis, make it a scatter chart, where data are presented as line", translate it to plotly language and place in the first plot output:</p>
 
 ```r
 output$plot <- renderPlotly({
@@ -139,7 +139,7 @@ print(mouse_event)
 1           0         136         2016 1.22
 ```
 
-<p align="justify">What we need is the year, stored in the third column of event (curveNumber = first column, pointNumber = second column, x = third column). We wanna store that information in a variable called...wait for it....year. Yep.</p>
+<p align="justify">What we need is the year, stored in the third column of event (curveNumber = first column, pointNumber = second column, x = third column). We wanna store that information in a variable called...wait for it....<code>year</code>. Yep.</p>
 
 ```r
 year <- mouse_event[3]
@@ -154,7 +154,7 @@ monthly_subset <- monthly[monthly$Year==year$x,]
 And plot a graph:
 
 ```r
-plot_ly(monthly_subset, x=~Month, y=~Deviation, mode="points + lines")
+plot_ly(monthly_subset, x=~Month, y=~Deviation, type = "scatter", mode = "points + lines")
 ```
 
 So to sum this part up, this is what your `output$plot2` should look like:
@@ -164,7 +164,7 @@ So to sum this part up, this is what your `output$plot2` should look like:
     mouse_event <- event_data("plotly_hover")
     year <- mouse_event[3]
     monthly_subset <- monthly[monthly$Year==year$x,]
-    plot_ly(monthly_subset, x=~Month, y=~Deviation,type = "scatter, mode="points + lines")
+    plot_ly(monthly_subset, x=~Month, y=~Deviation,type = "scatter", mode = "points + lines")
   })
   ```
 

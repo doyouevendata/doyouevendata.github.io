@@ -21,13 +21,6 @@ We're gonna create a simple R application showing annual and monthly average tem
 - 2 R files, one called server.R (script that contains the instructions that your computer needs to build your app) and one called ui.R (script that controls the layout and appearance of your app)
 - data
 
-To install shiny and plotly execute:
-```r
-install.packages("shiny")
-install.packages("plotly")
-library("plotly")
-library("shiny")
-```
 <p align="justify">
 You can download data files from <a href="">here</a> and <a href="">here</a>. These are excel sheets prepared from the data availaible on NASA page (<a href="">link</a>). Nasa's data looks like that:
 </p>
@@ -36,7 +29,15 @@ You can download data files from <a href="">here</a> and <a href="">here</a>. Th
 It contains the year, average temperature anomaly for each month (January to December), than the average values for periods January-December, December-November and each quarter. What we've created from it:</p>
 ![image_sketch](/images/dynamic_histogram/tables.png)
 
+To install shiny and plotly execute:
+```r
+install.packages("shiny")
+install.packages("plotly")
+library("plotly")
+library("shiny")
+```
 
+#### Building app.
 <p align="justify">
 Now, our program has 2 components and their schema is imposed by Shiny. You can learn more about Shiny by visiting their website <a href="www.shiny.rstudio.com">www.shiny.rstudio.com</a>
 </p>
@@ -61,6 +62,11 @@ where:
 `plotlyOutput("plot")` is the place for output of the plotly function (the graph) we will call plot
 `h2("Monthly temperature anomaly for specific year")` is the header of second section
 `plotlyOutput("plot2")` is the place for output of the plotly function (the graph) we will call plot2
+
+<p align="justify">This is what we've created so far:</p>
+<p align="center">
+  <img src="/images/dynamic_histogram/layout.png">
+</p>
 
 <p align="justify">
 If we are minimalists and don't need our program to be fancy-looking, this is all we have to do. Now, to the server.R part! By default, it looks like that:</p>
@@ -96,13 +102,17 @@ annual <- read.csv(file="path_to_annual_file.csv",sep=",",header=TRUE)
        when inputs change
    * Its output type is a plot
     
-<p align="justify">Now we can go straight to the point, which means building graphs! Building the first, static graph will be very easy (its level: one-line-easiness). We only have to tell <code>plotly</code> "dude, take my annual dataset, put Years on Y axis, put temperature anomalies on Y axis, print it as a line", translate it to plotly language and place in the first plot output:</p>
+ #### Plotting graphs.
+<p align="justify">Now we can go straight to the point, which means plotting graphs! Building the first, static graph will be very easy (its level: one-line-easiness). We only have to tell <code>plotly</code> "dude, take my annual dataset, put Years on Y axis, put temperature anomalies on Y axis, make it a scatter chart, where data are presented as line", translate it to plotly language and place in the first plot output:</p>
 ```r
 output$plot <- renderPlotly({
-    plot_ly(annual, x=~Year, y=~J.D, mode="lines")
+    plot_ly(annual, x=~Year, y=~J.D, type = "scatter", mode="lines")
 })
 ```
-<p align="justify">By the way, <code>plotly</code> is an awesome tool, so awesome you should go right now to <a href="https://plot.ly/feed/">its page</a> and learn more about it. If you are too lazy to do that, just type <code>?plotly</code> into R console.
+<p align="center">
+  <img src="/images/dynamic_histogram/annual_graph.png">
+</p>
+<p align="justify">By the way, <code>plotly</code> is an awesome tool, so awesome you should go right now to <a href="https://plot.ly/feed/">its page</a> and learn more about it. If you are too lazy to do that, just type <code>?plotly</code> into R console. Also, <a href="https://plot.ly/r/reference/">here</a> you can find something about chart types in Plotly.
 
 And now the most interesting part, generating graph dynamically on hover. To know where our mouse pointer is, we have to capture and store mouse event (check <a href="https://www.rdocumentation.org/packages/plotly/versions/4.5.6/topics/event_data">documentation</a>).</p>
 ```r
@@ -132,8 +142,14 @@ So to sum this part up, this is what your `output$plot2` should look like:
     mouse_event <- event_data("plotly_hover")
     year <- mouse_event[3]
     monthly_subset <- monthly[monthly$Year==year$x,]
-    plot_ly(monthly_subset, x=~Month, y=~Deviation, mode="points + lines")
+    plot_ly(monthly_subset, x=~Month, y=~Deviation,type = "scatter, mode="points + lines")
   })
   ```
 
-   
+<p align="justify">Or, if you want your code to take only 1 line instead of 4 and be impossible to understand, you can do that:</p>
+```r
+  output$plot2 <- renderPlotly({
+    plot_ly(monthly[monthly$Year==event_data("plotly_hover")[3]$x,], x=~Month, y=~Deviation, type = "scatter", mode="lines + points")
+  })
+  
+<p align="justify">Are you ready to see the final result?</p>

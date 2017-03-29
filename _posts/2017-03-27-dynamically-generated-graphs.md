@@ -176,4 +176,4 @@ So to sum this part up, this is what your `output$plot2` should look like:
 
 <p align="justify">Are you ready to see the final result?</p>
 
-<iframe src="https://ymra.shinyapps.io/online/" style="width:100%; height:500px";>
+<iframe src="https://ymra.shinyapps.io/online/" style="width:100%; height:500px";></iframe>

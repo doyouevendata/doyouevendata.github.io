@@ -70,6 +70,7 @@ where:
 
 <p align="justify">
 If we are minimalists and don't need our program to be fancy-looking, this is all we have to do. Now, to the server.R part! By default, it looks like that:</p>
+
 ```r
 library(shiny)
 server <- function(input, output) {

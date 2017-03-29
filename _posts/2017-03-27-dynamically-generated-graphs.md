@@ -79,6 +79,7 @@ server <- function(input, output) {
 ```
 <p align="justify">
 We wanna tell our script few things. First, we will use plotly, so he should have <code>library(plotly)</code> included just above <code>library(shiy)</code>.Then, we have import the data he will work on. Also, he has to know that we have created 2 areas to plot graphs, called <code>plot</code> and<code>plot2</code> and and the output of our actions should be directed to them. Hence:</p>
+
 ```r
 library(shiny)
 library(plotly)
@@ -105,6 +106,7 @@ annual <- read.csv(file="path_to_annual_file.csv",sep=",",header=TRUE)
     
  #### Plotting graphs.
 <p align="justify">Now we can go straight to the point, which means plotting graphs! Building the first, static graph will be very easy (its level: one-line-easiness). We only have to tell <code>plotly</code> "dude, take my annual dataset, put Years on Y axis, put temperature anomalies on Y axis, make it a scatter chart, where data are presented as line", translate it to plotly language and place in the first plot output:</p>
+
 ```r
 output$plot <- renderPlotly({
     plot_ly(annual, x=~Year, y=~J.D, type = "scatter", mode="lines")
@@ -116,28 +118,39 @@ output$plot <- renderPlotly({
 <p align="justify">By the way, <code>plotly</code> is an awesome tool, so awesome you should go right now to <a href="https://plot.ly/feed/">its page</a> and learn more about it. If you are too lazy to do that, just type <code>?plotly</code> into R console. Also, <a href="https://plot.ly/r/reference/">here</a> you can find something about chart types in Plotly.
 
 And now the most interesting part, generating graph dynamically on hover. To know where our mouse pointer is, we have to capture and store mouse event (check <a href="https://www.rdocumentation.org/packages/plotly/versions/4.5.6/topics/event_data">documentation</a>).</p>
+
 ```r
 mouse_event <- event_data("plotly_hover")
 ```
+
 If you are curious how mouse event looks like, here is the one captured while mouse pointer is over year 2016 point of graph:
+
 ```r
 print(mouse_event)
         curveNumber pointNumber    x    y
 1           0         136         2016 1.22
 ```
+
 <p align="justify">What we need is the year, stored in the third column of event (curveNumber = first column, pointNumber = second column, x = third column). We wanna store that information in a variable called...wait for it....year. Yep.</p>
+
 ```r
 year <- mouse_event[3]
 ```
+
 <p align="justify">Now we wanna plot the graph showing monthly temperature anomalies for this particular year, so let's create a subset from our monthly dataset selecting only these rows where year = particular year captured in mouse event.</p>
+
 ```r
 monthly_subset <- monthly[monthly$Year==year$x,]
 ```
+
 And plot a graph:
+
 ```r
 plot_ly(monthly_subset, x=~Month, y=~Deviation, mode="points + lines")
 ```
+
 So to sum this part up, this is what your `output$plot2` should look like:
+
 ```r
   output$plot2 <- renderPlotly({
     mouse_event <- event_data("plotly_hover")
@@ -148,6 +161,7 @@ So to sum this part up, this is what your `output$plot2` should look like:
   ```
 
 <p align="justify">Or, if you want your code to take only 1 line instead of 4 and be impossible to understand, you can do that:</p>
+
 ```r
   output$plot2 <- renderPlotly({
     plot_ly(monthly[monthly$Year==event_data("plotly_hover")[3]$x,], x=~Month, y=~Deviation, type = "scatter", mode="lines + points")

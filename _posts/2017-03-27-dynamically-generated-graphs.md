@@ -172,7 +172,8 @@ So to sum this part up, this is what your `output$plot2` should look like:
   output$plot2 <- renderPlotly({
     plot_ly(monthly[monthly$Year==event_data("plotly_hover")[3]$x,], x=~Month, y=~Deviation, type = "scatter", mode="lines + points")
   })
-  
+```
+
 <p align="justify">Are you ready to see the final result?</p>
 
 <iframe src="https://ymra.shinyapps.io/online/">

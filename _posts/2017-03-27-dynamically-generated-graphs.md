@@ -58,10 +58,10 @@ plotlyOutput("plot2")
  ```
 where:
 
-`h2("Average temperature anomaly for each year in 1880-2016 period")` is the header of first section
-`plotlyOutput("plot")` is the place for output of the plotly function (the graph) we will call plot
-`h2("Monthly temperature anomaly for specific year")` is the header of second section
-`plotlyOutput("plot2")` is the place for output of the plotly function (the graph) we will call plot2
+* `h2("Average temperature anomaly for each year in 1880-2016 period")` is the header of first section
+* `plotlyOutput("plot")` is the place for output of the plotly function (the graph) we will call plot
+* `h2("Monthly temperature anomaly for specific year")` is the header of second section
+* `plotlyOutput("plot2")` is the place for output of the plotly function (the graph) we will call plot2
 
 <p align="justify">This is what we've created so far:</p>
 <p align="center">

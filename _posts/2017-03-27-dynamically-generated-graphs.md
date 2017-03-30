@@ -3,79 +3,9 @@ layout: post
 title: Graphs generated dynamically on hover (using R, shiny and plotly)
 ---
 <style type="text/css">
-* {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  box-sizing: border-box;
-  outline: none;
-  font-weight: normal;
-}
-
-.tabs {
-  background: #fff;
-  position: relative;
-}
-
-.tabs > input,
-.tabs > span {
-  width: 20%;
-  height: 60px;
-  line-height: 60px;
-  position: absolute;
-  top: 0;
-}
-
-.tabs > input {
-  cursor: pointer;
-  filter: alpha(opacity=0);
-  opacity: 0;
-  position: absolute;
-  z-index: 99;
-}
-
-.tabs > span {
-  background: #f0f0f0;
-  text-align: center;
-  overflow: hidden;
-}
-
-.tabs > span i,
-.tabs > span {
-  -webkit-transition: all .5s;
-     -moz-transition: all .5s;
-     -o-transition: all .5s;
-      transition: all .5s;
-}
-
-.tabs > input:hover + span {
-  background: rgba(255,255,255,.1);
-}
-
-.tabs > input:checked + span {
-  background: #fff;
-}
-
-.tabs > input:checked + span,
-.tabs > input:hover + span {
-  color: #3498DB;
-}
-
-#tab-1, #tab-1 + span {
-  left: 0;
-}
-
-#tab-2, #tab-2 + span {
-  left: 20%;
-}
-
-#tab-1:checked ~ .tab-content #tab-item-1  {
-  display: block;
-}
-
-#tab-2:checked ~ .tab-content #tab-item-2  {
-  display: block;
-}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </style>
 
 <script>
@@ -278,58 +208,9 @@ So to sum this part up, this is what your `output$plot2` should look like:
 
 <iframe src="https://ymra.shinyapps.io/online/" style="width:100%; height:800px;"></iframe>
 
-<div class="tabs effect-1">
-  <!-- tab-title -->
-  <input type="radio" id="tab-1" name="tab" checked="checked">
-  <span href="#tab-item-1">ui.R</span>
-
-  <input type="radio" id="tab-2" name="tab">
-  <span href="#tab-item-2">server.R</span>
-
-  <!-- tab-content -->
-  <div class="tab-content">
-    <section id="tab-item-1">
-        <code>
-            library(shiny)
-            library(plotly)
-
-            ui <- fluidPage(
-              h4("Average temperature anomaly for each year in 1880-2016 period",align="center"),
-              div(plotlyOutput("plot",width = "500px", height = "300px"), align = "center"),
-              h4("Monthly temperature anomaly for specific year",align="center"),
-              div(plotlyOutput("plot2",width = "500px", height = "300px"), align = "center")
-            )
-        </code>
-    </section>
-    <section id="tab-item-2">
-        <div><code>
-        library(shiny)
-        library(plotly)
-
-
-        server <- function(input, output) {
-          # Read data
-          monthly <- read.csv(file="monthly.csv", sep=",", header = TRUE)
-          annual <- read.csv(file="annual.csv", sep=",", header = TRUE)
-
-          monthly$Month <- factor(monthly$Month, levels = c("Jan", "Feb", "Mar", 
-                                                            "Apr", "May", "Jun", 
-                                                            "Jul", "Aug", "Sep", 
-                                                            "Oct", "Nov", "Dec"))
-
-          output$plot <- renderPlotly({
-            plot_ly(annual, x=~Year, y=~J.D,type = "scatter", mode="lines")
-            })
-
-          output$plot2 <- renderPlotly({
-            mouse_event <- event_data("plotly_hover")
-            year <- mouse_event[3]
-            monthly_subset <- monthly[monthly$Year==year$x,]
-            plot_ly(monthly_subset, x=~Month, y=~Deviation, type = "scatter", mode="lines + points")
-          })
-        }
-        </code></div>
-      </section>
-  </div>
-</div>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#">Home</a></li>
+  <li><a href="#">ui.R</a></li>
+  <li><a href="#">server.R</a></li>
+</ul>
 

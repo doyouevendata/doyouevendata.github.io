@@ -69,18 +69,6 @@ title: Graphs generated dynamically on hover (using R, shiny and plotly)
   left: 20%;
 }
 
-#tab-3, #tab-3 + span {
-  left: 40%;
-}
-
-#tab-4, #tab-4 + span {
-  left: 60%;
-}
-
-#tab-5, #tab-5 + span {
-  left: 80%;
-}
-
 .tab-content {
   padding: 80px 20px 20px;
   width: 100%;
@@ -104,18 +92,6 @@ title: Graphs generated dynamically on hover (using R, shiny and plotly)
 }
 
 #tab-2:checked ~ .tab-content #tab-item-2  {
-  display: block;
-}
-
-#tab-3:checked ~ .tab-content #tab-item-3  {
-  display: block;
-}
-
-#tab-4:checked ~ .tab-content #tab-item-4  {
-  display: block;
-}
-
-#tab-5:checked ~ .tab-content #tab-item-5  {
   display: block;
 }
 </style>
@@ -318,42 +294,64 @@ So to sum this part up, this is what your `output$plot2` should look like:
 
 <p align="justify">Are you ready to see the final result? Put your mouse pointer over the graph!</p>
 
-<iframe src="https://ymra.shinyapps.io/online/" style="width:100%; height:1000px;"></iframe>
+<iframe src="https://ymra.shinyapps.io/online/" style="width:100%; height:800px;"></iframe>
 
 <div class="tabs effect-1">
   <!-- tab-title -->
   <input type="radio" id="tab-1" name="tab" checked="checked">
-  <span href="#tab-item-1">Home</span>
+  <span href="#tab-item-1">ui.R</span>
 
   <input type="radio" id="tab-2" name="tab">
-  <span href="#tab-item-2">Calendar</span>
-
-  <input type="radio" id="tab-3" name="tab">
-  <span href="#tab-item-3">Book Mark</span>
-
-  <input type="radio" id="tab-4" name="tab">
-  <span href="#tab-item-4">Upload</span>
-  
-  <input type="radio" id="tab-5" name="tab">
-  <span href="#tab-item-5">Settings</span>
+  <span href="#tab-item-2">server.R</span>
 
   <!-- tab-content -->
   <div class="tab-content">
     <section id="tab-item-1">
-      <h1>One</h1>
+      <h1>
+        <code>
+            library(shiny)
+            library(plotly)
+
+            ui <- fluidPage(
+              h4("Average temperature anomaly for each year in 1880-2016 period",align="center"),
+              div(plotlyOutput("plot",width = "500px", height = "300px"), align = "center"),
+              h4("Monthly temperature anomaly for specific year",align="center"),
+              div(plotlyOutput("plot2",width = "500px", height = "300px"), align = "center")
+            )
+        </code>
+      </h1>
     </section>
     <section id="tab-item-2">
-      <h1>Two</h1>
-    </section>
-    <section id="tab-item-3">
-      <h1>Three</h1>
-    </section>
-    <section id="tab-item-4">
-      <h1>Four</h1>
-    </section>
-    <section id="tab-item-5">
-      <h1>Five</h1>
-    </section>
+      <h1>
+        <code>
+        library(shiny)
+        library(plotly)
+
+
+        server <- function(input, output) {
+          # Read data
+          monthly <- read.csv(file="monthly.csv", sep=",", header = TRUE)
+          annual <- read.csv(file="annual.csv", sep=",", header = TRUE)
+
+          monthly$Month <- factor(monthly$Month, levels = c("Jan", "Feb", "Mar", 
+                                                            "Apr", "May", "Jun", 
+                                                            "Jul", "Aug", "Sep", 
+                                                            "Oct", "Nov", "Dec"))
+
+          output$plot <- renderPlotly({
+            plot_ly(annual, x=~Year, y=~J.D,type = "scatter", mode="lines")
+            })
+
+          output$plot2 <- renderPlotly({
+            mouse_event <- event_data("plotly_hover")
+            year <- mouse_event[3]
+            monthly_subset <- monthly[monthly$Year==year$x,]
+            plot_ly(monthly_subset, x=~Month, y=~Deviation, type = "scatter", mode="lines + points")
+          })
+        }
+        </code>
+      </h1>
+      </section>
   </div>
 </div>
 

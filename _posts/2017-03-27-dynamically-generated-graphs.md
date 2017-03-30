@@ -302,7 +302,7 @@ So to sum this part up, this is what your `output$plot2` should look like:
         </code>
     </section>
     <section id="tab-item-2">
-        <code>
+        <div><code>
         library(shiny)
         library(plotly)
 
@@ -328,7 +328,7 @@ So to sum this part up, this is what your `output$plot2` should look like:
             plot_ly(monthly_subset, x=~Month, y=~Deviation, type = "scatter", mode="lines + points")
           })
         }
-        </code>
+        </code></div>
       </section>
   </div>
 </div>

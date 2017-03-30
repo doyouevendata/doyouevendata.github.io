@@ -289,7 +289,6 @@ So to sum this part up, this is what your `output$plot2` should look like:
   <!-- tab-content -->
   <div class="tab-content">
     <section id="tab-item-1">
-      <h1>
         <code>
             library(shiny)
             library(plotly)
@@ -301,10 +300,8 @@ So to sum this part up, this is what your `output$plot2` should look like:
               div(plotlyOutput("plot2",width = "500px", height = "300px"), align = "center")
             )
         </code>
-      </h1>
     </section>
     <section id="tab-item-2">
-      <h1>
         <code>
         library(shiny)
         library(plotly)
@@ -332,7 +329,6 @@ So to sum this part up, this is what your `output$plot2` should look like:
           })
         }
         </code>
-      </h1>
       </section>
   </div>
 </div>

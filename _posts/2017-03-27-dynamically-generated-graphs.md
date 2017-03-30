@@ -112,8 +112,7 @@ annual <- read.csv(file="path_to_annual_file.csv",sep=",",header=TRUE)
    * Its output type is a plot
    
    
-#### Plotting graphs.
- 
+#### Plotting graphs. 
 <p align="justify">Now we can go straight to the point, which means plotting graphs! Building the first, static graph will be very easy (level: one-line-easiness). We only have to tell <code>plotly</code> "dude, take my annual dataset, put Years on Y axis, put temperature anomalies on Y axis, make it a scatter chart, where data are presented as line", translate it to plotly language and place in the first plot output:</p>
 
 ```r

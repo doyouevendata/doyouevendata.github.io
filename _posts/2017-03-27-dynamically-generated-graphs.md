@@ -69,24 +69,6 @@ title: Graphs generated dynamically on hover (using R, shiny and plotly)
   left: 20%;
 }
 
-.tab-content {
-  padding: 80px 20px 20px;
-  width: 100%;
-  min-height: 340px;
-}
-
-.tab-content section {
-  width: 100%;
-  display: none;
-}
-
-.tab-content section h1 {
-  margin-top: 15px;
-  font-size: 100px;
-  font-weight: 100;
-  text-align: center;
-}
-
 #tab-1:checked ~ .tab-content #tab-item-1  {
   display: block;
 }

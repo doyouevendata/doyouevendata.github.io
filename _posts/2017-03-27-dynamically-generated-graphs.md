@@ -23,7 +23,7 @@ We're gonna create a simple R application showing annual and monthly average tem
 - data
 
 <p align="justify">
-You can download data files from <a href="">here</a> and <a href="">here</a>. These are excel sheets prepared from the data availaible on NASA page (<a href="">link</a>). Nasa's data looks like that:
+You can download data files from <a href="doyouevendata.github.io/images/dynamic_histogram/annual.csv">here</a> and <a href="doyouevendata.github.io/images/dynamic_histogram/monthly.csv">here</a>. These are excel sheets prepared from the data availaible on NASA page (<a href="https://data.giss.nasa.gov/gistemp/">link</a>). Nasa's data looks like that:
 </p>
 ![image_sketch](/images/dynamic_histogram/all_table.png)
 <p align="justify">
@@ -64,7 +64,7 @@ ui <- fluidPage(
  ```
 where:
 
-* `library(plotly)` information that we gonna use plotly library
+* `library(plotly)` is the information that we gonna use plotly library
 * `h2("Average temperature anomaly for each year in 1880-2016 period")` is the header of first section
 * `plotlyOutput("plot")` is the place for output of the plotly function (the graph) we will call plot
 * `h2("Monthly temperature anomaly for specific year")` is the header of second section
@@ -85,7 +85,7 @@ server <- function(input, output) {
 }
 ```
 <p align="justify">
-We wanna tell our script few things. First, we will use plotly, so we should add <code>library(plotly)</code> just below <code>library(shiny)</code>.Then, we have to import the data we will work on. Also, script has to know that we have created 2 areas to plot graphs, called <code>plot</code> and<code>plot2</code> and the output of our actions should be directed to them. Hence:</p>
+We wanna tell our script few things. First, we will use plotly, so we should add <code>library(plotly)</code> just below <code>library(shiny)</code>.Then, we have to import the data we will work on. Also, script has to know that we have created 2 areas to plot graphs, called <code>plot</code> and <code>plot2</code> and the output of our actions should be directed to them. Hence:</p>
 
 ```r
 library(shiny)
@@ -110,8 +110,9 @@ annual <- read.csv(file="path_to_annual_file.csv",sep=",",header=TRUE)
    * It is "reactive" and therefore should re-execute automatically
        when inputs change
    * Its output type is a plot
-    
- #### Plotting graphs.
+   
+   
+#### Plotting graphs.
  
 <p align="justify">Now we can go straight to the point, which means plotting graphs! Building the first, static graph will be very easy (level: one-line-easiness). We only have to tell <code>plotly</code> "dude, take my annual dataset, put Years on Y axis, put temperature anomalies on Y axis, make it a scatter chart, where data are presented as line", translate it to plotly language and place in the first plot output:</p>
 
@@ -131,7 +132,7 @@ And now the most interesting part, generating graph dynamically on hover. To kno
 mouse_event <- event_data("plotly_hover")
 ```
 
-If you are curious how mouse event looks like, here is the one captured while mouse pointer is over year 2016 point of graph:
+<p align="justify">If you are curious how mouse event looks like, here is the one captured while mouse pointer is over year 2016 point of graph:</p>
 
 ```r
 print(mouse_event)
@@ -176,6 +177,6 @@ So to sum this part up, this is what your `output$plot2` should look like:
   })
 ```
 
-<p align="justify">Are you ready to see the final result? Put your mouose pointer over the graph!</p>
+<p align="justify">Are you ready to see the final result? Put your mouse pointer over the graph!</p>
 
 <iframe src="https://ymra.shinyapps.io/online/" style="width:100%; height:1000px;"></iframe>

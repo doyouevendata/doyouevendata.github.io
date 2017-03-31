@@ -2,9 +2,6 @@
 layout: post
 title: Graphs generated dynamically on hover (using R, shiny and plotly)
 ---
-<p align="justify">
-Hello! Recently I was asked to create an R program showing one graph and dynamically generating another using the information about mouse position over the first graph. It is not as difficult as I thought, so here's the tutorial.
-</p>
 <style>
     ul.tabs {
       margin: 0px;
@@ -45,6 +42,9 @@ Hello! Recently I was asked to create an R program showing one graph and dynamic
       display: inherit;
     }
 </style>
+<p align="justify">
+Hello! Recently I was asked to create an R program showing one graph and dynamically generating another using the information about mouse position over the first graph. It is not as difficult as I thought, so here's the tutorial.
+</p>
 
 
 

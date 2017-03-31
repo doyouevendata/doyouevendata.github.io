@@ -2,7 +2,7 @@
 layout: post
 title: Graphs generated dynamically on hover (using R, shiny and plotly)
 ---
-<style type="text/css">
+<style>
 		ul.tabs {
 			margin: 0px;
 			padding: 0px;

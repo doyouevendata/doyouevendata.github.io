@@ -3,54 +3,42 @@ layout: post
 title: Graphs generated dynamically on hover (using R, shiny and plotly)
 ---
 <style type="text/css">
-body{
-			margin-top: 100px;
-    font-family: "Helvetica     Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-			line-height: 1.6
-		}
-
-		ul.tabs{
+		ul.tabs {
 			margin: 0px;
 			padding: 0px;
 			list-style: none;
-      border-bottom: 1px solid #ddd;    
+			border-bottom: 1px solid #ddd;
 		}
-
-		ul.tabs li{
+		ul.tabs li {
 			background: none;
 			color: #808080;
 			display: inline-block;
 			padding: 10px 15px;
 			cursor: pointer;
 		}
-
-		ul.tabs li.current{
-		background: none;
-		color: #808080;
-    border-style: solid;
-    border-width: 1px 1px 1px 1px;
-    border-color: #ddd;
-    border-radius: 5px 5px 0px 0px;
-    border-bottom-color: white;      
-    margin-bottom: -1px;
-
+		ul.tabs li.current {
+			background: none;
+			color: #808080;
+			border-style: solid;
+			border-width: 1px 1px 1px 1px;
+			border-color: #ddd;
+			border-radius: 5px 5px 0px 0px;
+			border-bottom-color: white;
+			margin-bottom: -1px;
 		}
-
-		.tab-content{
-    font-family: 'Droid Sans Mono', monospace;
-     display: none;
-      background: #f5f5f5;
-      margin: 10px 0px 10px 0px;
-      text-align: left;
-    font-size: 11px;
-    line-height: 1.2;
-    overflow: auto;
-    white-space: pre;
-          box-shadow: 5px 5px 0 #DDD;
+		.tab-content {
+			font-family: 'Droid Sans Mono', monospace;
+			display: none;
+			background: #f5f5f5;
+			margin: 10px 0px 10px 0px;
+			text-align: left;
+			font-size: 11px;
+			line-height: 1.2;
+			overflow: auto;
+			white-space: pre;
+			box-shadow: 5px 5px 0 #DDD;
 		}
-
-		.tab-content.current{
+		.tab-content.current {
 			display: inherit;
 		}
 
@@ -235,64 +223,61 @@ So to sum this part up, this is what your `output$plot2` should look like:
 <iframe src="https://ymra.shinyapps.io/online/" style="width:100%; height:800px;"></iframe>
 
 <div class="container">
-
 	<ul class="tabs">
 		<li class="tab-link current" data-tab="tab-1">ui.R</li>
 		<li class="tab-link" data-tab="tab-2">server.R</li>
 	</ul>
+	<div class="content">
+		<div class="tab-content current" id="tab-1">
+			<pre class="code">
+				<code class="r">
+					<xmp>
+					library(shiny)
+					library(plotly)
 
-  <div class="content">
-	<div id="tab-1" class="tab-content current">
-		<pre class="code">
-    <code class="r">
-    <xmp>    
-    library(shiny)
-    library(plotly)
+					ui <- fluidPage(
+					  h4("Average temperature anomaly for each year in 1880-2016 period",align="center"),
+					  div(plotlyOutput("plot",width = "500px", height = "300px"), align = "center"),
+					  h4("Monthly temperature anomaly for specific year",align="center"),
+					  div(plotlyOutput("plot2",width = "500px", height = "300px"), align = "center")
+					)
 
-    ui <- fluidPage(
-      h4("Average temperature anomaly for each year in 1880-2016 period",align="center"),
-      div(plotlyOutput("plot",width = "500px", height = "300px"), align = "center"),
-      h4("Monthly temperature anomaly for specific year",align="center"),
-      div(plotlyOutput("plot2",width = "500px", height = "300px"), align = "center")
-    )
-    </xmp>
-    </code>
-    </pre>
+					</xmp>
+				</code>
+			</pre>
+		</div>
+		<div class="tab-content" id="tab-2">
+			<pre class="code">
+				<code class="r">
+					</xmp>
+						library(shiny)
+						library(plotly)
+
+
+						server <- function(input, output) {
+						  # Read data
+						  monthly <- read.csv(file="monthly.csv", sep=",", header = TRUE)
+						  annual <- read.csv(file="annual.csv", sep=",", header = TRUE)
+
+						  monthly$Month <- factor(monthly$Month, levels = c("Jan", "Feb", "Mar", 
+																			"Apr", "May", "Jun", 
+																			"Jul", "Aug", "Sep", 
+																			"Oct", "Nov", "Dec"))
+
+						  output$plot <- renderPlotly({
+							plot_ly(annual, x=~Year, y=~J.D,type = "scatter", mode="lines")
+							})
+
+						  output$plot2 <- renderPlotly({
+							mouse_event <- event_data("plotly_hover")
+							year <- mouse_event[3]
+							monthly_subset <- monthly[monthly$Year==year$x,]
+							plot_ly(monthly_subset, x=~Month, y=~Deviation, type = "scatter", mode="lines + points")
+						  })
+						}
+</xmp></code></pre>
+
+		</div>
 	</div>
-	<div id="tab-2" class="tab-content">
-		 		<pre class="code">
-    <code class="r">
-    <xmp>
-    library(shiny)
-    library(plotly)
+</div>
 
-
-    server <- function(input, output) {
-      # Read data
-      monthly <- read.csv(file="monthly.csv", sep=",", header = TRUE)
-      annual <- read.csv(file="annual.csv", sep=",", header = TRUE)
-
-      monthly$Month <- factor(monthly$Month, levels = c("Jan", "Feb", "Mar", 
-                                                        "Apr", "May", "Jun", 
-                                                        "Jul", "Aug", "Sep", 
-                                                        "Oct", "Nov", "Dec"))
-
-      output$plot <- renderPlotly({
-        plot_ly(annual, x=~Year, y=~J.D,type = "scatter", mode="lines")
-        })
-
-      output$plot2 <- renderPlotly({
-        mouse_event <- event_data("plotly_hover")
-        year <- mouse_event[3]
-        monthly_subset <- monthly[monthly$Year==year$x,]
-        plot_ly(monthly_subset, x=~Month, y=~Deviation, type = "scatter", mode="lines + points")
-      })
-    }
-    </xmp>
-    </code>
-    </pre>
-  </div>
-  </div>
-</div><!-- container -->
-
-</div><!-- container -->

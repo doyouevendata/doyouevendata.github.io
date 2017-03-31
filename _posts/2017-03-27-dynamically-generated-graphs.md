@@ -42,7 +42,7 @@ title: Graphs generated dynamically on hover (using R, shiny and plotly)
       display: inherit;
     }
 </style>
-<script>
+<script  type="text/javascript">
 $(document).ready(function(){
 	
 	$('ul.tabs li').click(function(){

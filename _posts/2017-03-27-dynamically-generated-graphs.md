@@ -221,3 +221,62 @@ So to sum this part up, this is what your `output$plot2` should look like:
 
 <iframe src="https://ymra.shinyapps.io/online/" style="width:100%; height:800px;"></iframe>
 
+<div class="container">
+  <ul class="tabs">
+    <li class="tab-link current" data-tab="tab-1">ui.R</li>
+    <li class="tab-link" data-tab="tab-2">server.R</li>
+  </ul>
+  <div class="content">
+    <div class="tab-content current" id="tab-1">
+      <pre class="code">
+        <code class="r">
+          <xmp>
+          library(shiny)
+          library(plotly)
+
+          ui <- fluidPage(
+            h4("Average temperature anomaly for each year in 1880-2016 period",align="center"),
+            div(plotlyOutput("plot",width = "500px", height = "300px"), align = "center"),
+            h4("Monthly temperature anomaly for specific year",align="center"),
+            div(plotlyOutput("plot2",width = "500px", height = "300px"), align = "center")
+          )
+
+          </xmp>
+        </code>
+      </pre>
+    </div>
+    <div class="tab-content" id="tab-2">
+      <pre class="code">
+        <code class="r">
+          </xmp>
+            library(shiny)
+            library(plotly)
+
+
+            server <- function(input, output) {
+              # Read data
+              monthly <- read.csv(file="monthly.csv", sep=",", header = TRUE)
+              annual <- read.csv(file="annual.csv", sep=",", header = TRUE)
+
+              monthly$Month <- factor(monthly$Month, levels = c("Jan", "Feb", "Mar", 
+                                      "Apr", "May", "Jun", 
+                                      "Jul", "Aug", "Sep", 
+                                      "Oct", "Nov", "Dec"))
+
+              output$plot <- renderPlotly({
+              plot_ly(annual, x=~Year, y=~J.D,type = "scatter", mode="lines")
+              })
+
+              output$plot2 <- renderPlotly({
+              mouse_event <- event_data("plotly_hover")
+              year <- mouse_event[3]
+              monthly_subset <- monthly[monthly$Year==year$x,]
+              plot_ly(monthly_subset, x=~Month, y=~Deviation, type = "scatter", mode="lines + points")
+              })
+            }
+</xmp></code></pre>
+
+    </div>
+  </div>
+</div>
+

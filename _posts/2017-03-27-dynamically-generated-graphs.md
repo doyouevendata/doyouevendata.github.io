@@ -5,60 +5,56 @@ title: Graphs generated dynamically on hover (using R, shiny and plotly)
 <style type="text/css">
 body{
 			margin-top: 100px;
-			font-family: 'Trebuchet MS', serif;
+    font-family: "Helvetica     Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
 			line-height: 1.6
 		}
-		.container{
-			width: 800px;
-			margin: 0 auto;
-		}
-
-
 
 		ul.tabs{
 			margin: 0px;
 			padding: 0px;
 			list-style: none;
+      border-bottom: 1px solid #ddd;    
 		}
+
 		ul.tabs li{
 			background: none;
-			color: #222;
+			color: #808080;
 			display: inline-block;
 			padding: 10px 15px;
 			cursor: pointer;
 		}
 
 		ul.tabs li.current{
-			background: #ededed;
-			color: #222;
+		background: none;
+		color: #808080;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #ddd;
+    border-radius: 5px 5px 0px 0px;
+    border-bottom-color: white;      
+    margin-bottom: -1px;
+
 		}
 
 		.tab-content{
-			display: none;
-			background: #ededed;
-			padding: 15px;
+    font-family: 'Droid Sans Mono', monospace;
+     display: none;
+      background: #f5f5f5;
+      margin: 10px 0px 10px 0px;
+      text-align: left;
+    font-size: 11px;
+    line-height: 1.2;
+    overflow: auto;
+    white-space: pre;
+          box-shadow: 5px 5px 0 #DDD;
 		}
 
 		.tab-content.current{
 			display: inherit;
 		}
-</style>
 
-<script>
-$(document).ready(function(){
-	
-	$('ul.tabs li').click(function(){
-		var tab_id = $(this).attr('data-tab');
 
-		$('ul.tabs li').removeClass('current');
-		$('.tab-content').removeClass('current');
-
-		$(this).addClass('current');
-		$("#"+tab_id).addClass('current');
-	})
-
-})
-</script>
 
 
 <p align="justify">
@@ -241,15 +237,62 @@ So to sum this part up, this is what your `output$plot2` should look like:
 <div class="container">
 
 	<ul class="tabs">
-		<li class="tab-link current" data-tab="tab-1">Tab One</li>
-		<li class="tab-link" data-tab="tab-2">Tab Two</li>
+		<li class="tab-link current" data-tab="tab-1">ui.R</li>
+		<li class="tab-link" data-tab="tab-2">server.R</li>
 	</ul>
 
+  <div class="content">
 	<div id="tab-1" class="tab-content current">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+		<pre class="code">
+    <code class="r">
+    <xmp>    
+    library(shiny)
+    library(plotly)
+
+    ui <- fluidPage(
+      h4("Average temperature anomaly for each year in 1880-2016 period",align="center"),
+      div(plotlyOutput("plot",width = "500px", height = "300px"), align = "center"),
+      h4("Monthly temperature anomaly for specific year",align="center"),
+      div(plotlyOutput("plot2",width = "500px", height = "300px"), align = "center")
+    )
+    </xmp>
+    </code>
+    </pre>
 	</div>
 	<div id="tab-2" class="tab-content">
-		 Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	</div>
+		 		<pre class="code">
+    <code class="r">
+    <xmp>
+    library(shiny)
+    library(plotly)
+
+
+    server <- function(input, output) {
+      # Read data
+      monthly <- read.csv(file="monthly.csv", sep=",", header = TRUE)
+      annual <- read.csv(file="annual.csv", sep=",", header = TRUE)
+
+      monthly$Month <- factor(monthly$Month, levels = c("Jan", "Feb", "Mar", 
+                                                        "Apr", "May", "Jun", 
+                                                        "Jul", "Aug", "Sep", 
+                                                        "Oct", "Nov", "Dec"))
+
+      output$plot <- renderPlotly({
+        plot_ly(annual, x=~Year, y=~J.D,type = "scatter", mode="lines")
+        })
+
+      output$plot2 <- renderPlotly({
+        mouse_event <- event_data("plotly_hover")
+        year <- mouse_event[3]
+        monthly_subset <- monthly[monthly$Year==year$x,]
+        plot_ly(monthly_subset, x=~Month, y=~Deviation, type = "scatter", mode="lines + points")
+      })
+    }
+    </xmp>
+    </code>
+    </pre>
+  </div>
+  </div>
+</div><!-- container -->
 
 </div><!-- container -->

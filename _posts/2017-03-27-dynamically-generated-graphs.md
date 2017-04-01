@@ -250,6 +250,7 @@ So to sum this part up, this is what your `output$plot2` should look like:
 
 <iframe src="https://ymra.shinyapps.io/online/" style="width:100%; height:800px;"></iframe>
 
+You can reviev the files below, or on <a href="https://github.com/ymra/dynamic_histogram">my github</a>.
 <div class="tabs">
     
    <div class="tab">

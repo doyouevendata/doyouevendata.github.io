@@ -30,7 +30,7 @@ weather
 
 <p align="justify">Quick  reminder  about plotly:
 
-<code>plotly</code> charts are described declaratively in the call signature of <code>plotly::plot_ly/<code>, <code>plotly::add_trace</code>, and <code>plotly::layout</code>. Every aspect of a plotly chart (the colors, the grid-lines, the data, and so on) has a corresponding key in these call signatures. This page contains an extensive list of these attributes.
+<code>plotly</code> charts are described declaratively in the call signature of <code>plotly::plot_ly</code>, <code>plotly::add_trace</code>, and <code>plotly::layout</code>. Every aspect of a plotly chart (the colors, the grid-lines, the data, and so on) has a corresponding key in these call signatures. This page contains an extensive list of these attributes.
 
 Plotly's graph description places attributes into two categories: <code>traces</code> (which describe a single series of data in a graph) and <code>layout</code> attributes that apply to the rest of the chart, like the title, xaxis, or annotations).
 

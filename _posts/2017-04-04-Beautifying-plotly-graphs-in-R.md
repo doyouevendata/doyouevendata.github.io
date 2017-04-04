@@ -77,8 +77,7 @@ layout()
 
 #### Changing background color
 
-<p align="justify">I’m gonna kick off with changing the background. To do so, we have to add 2 keys to <code>layout</code>:
-<code>paper_bgcolor</code> (Sets the color of paper where the graph is drawn.) and  <code>plot_bgcolor</code> (Sets the color of plotting area in-between x and y axes.) I chose a nice blue.</p>
+<p align="justify">I’m gonna kick off with changing the background. To do so, we have to add 2 keys to <code>layout</code>:<code>paper_bgcolor</code> (Sets the color of paper where the graph is drawn.) and  <code>plot_bgcolor</code> (Sets the color of plotting area in-between x and y axes.) I chose a nice blue.</p>
 
 ```r
 layout(paper_bgcolor='#4666d1',

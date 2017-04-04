@@ -93,18 +93,21 @@ plot_ly(
     y = weather$temp,
     type = "bar"
     marker = list(color = '#ffffff')
-   )
+   ) %>%
+   layout()
 ```
 
 #### Styling axis
 
 <p align="justify">Now we can proceed to styling X and Y axis.  We will continue adding the keys to the <code>layout</code> part, right after <code>plot_bgcolor</code>. As both xaxis and yaxis will have many arguments, we will wrap them in <code>list()</code>. See below:</p>
+
 ```r
 layout(paper_bgcolor='#4666d1',
  	     plot_bgcolor='#4666d1',
        xaxis = list(place for arguments),
        yaxis = list(place for arguments)
 )
+```
 
 First thing, let’s adjust the color and make it white:
 ```r
@@ -120,9 +123,7 @@ So far, we have this:
 </p>
 
 <p align="justify">How about adding some text, so we would know what are we looking at? Let’s replace X axis values by month’s names. </p>
-```r
-weather$month <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-```
+`weather$month <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")`
 
 <p align="justify">Let’s make them a factor and add levels, so R knows that they have specific order. (You can read more about it in <a href="https://doyouevendata.github.io/Extra-Simple-GGPLOT2-Graphs-in-RStudio/">previous post</a>, section Factors and Levels)</p>
 ```r

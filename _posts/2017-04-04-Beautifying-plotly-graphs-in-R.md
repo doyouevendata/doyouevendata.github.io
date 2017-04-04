@@ -7,76 +7,6 @@ Till now I was styling the graphs in Photoshop rather than prepare them properly
 
 We'll gonna play with San Francisco average monthly temperatures availaible <a href="http://www.holiday-weather.com/san_francisco/averages/">here</a>.</p>
 
-<style>
-   .tabs {
-  position: relative;
-  min-height: 650px;
-  /* This part sucks */
-  clear: both;
-  margin: 25px 0;
-  font-family: 'Helvetica';
-}
-.tab {
-  float: left;
-}
-.tab label {
-  background: none;
-  padding: 10px;
-  cursor: pointer;
-  margin-left: -1px;
-  position: relative;
-  left: 1px;
-  background: none;
-  color: #808080;
-  border-style: solid;
-  border-width: 1px 1px 1px 1px;
-  border-color: #ddd;
-  border-radius: 5px 5px 0px 0px;
-  border-bottom-color: white;
-  padding: 11px;
-}
-.tab [type=radio] {
-  display: none;
-}
-.content {
-  position: absolute;
-  height: 100%;
-  top: 28px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  padding: 20px;
-  font-family: 'Droid Sans Mono', monospace;
-  background: white;
-  margin: 0px 0px 10px 0px;
-  text-align: left;
-  font-size: 11px;
-  line-height: 1.2;
-  overflow: auto;
-  white-space: pre;
-  border-top: 1px solid #ddd;
-}
-[type=radio]:checked~label {
-  background: white;
-  border-bottom: 1px solid white;
-  z-index: 2;
-}
-[type=radio]:checked~label~.content {
-  z-index: 1;
-}
-pre {
-  background: #f5f5f5;
-  margin: 10px 0px 10px 0px;
-  text-align: left;
-  font-size: 11px;
-  line-height: 1.2;
-  overflow: auto;
-  white-space: pre;
-  box-shadow: 5px 5px 0 #DDD;
-  padding: 10px;
-}
-</style>
-
 
 What we have to do before plotting a graph:
 ```r
@@ -336,6 +266,75 @@ Here's the result:
 
 
 Whole code:
+<style>
+   .tabs {
+  position: relative;
+  min-height: 700px;
+  /* This part sucks */
+  clear: both;
+  margin: 25px 0;
+  font-family: 'Helvetica';
+}
+.tab {
+  float: left;
+}
+.tab label {
+  background: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: -1px;
+  position: relative;
+  left: 1px;
+  background: none;
+  color: #808080;
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: #ddd;
+  border-radius: 5px 5px 0px 0px;
+  border-bottom-color: white;
+  padding: 11px;
+}
+.tab [type=radio] {
+  display: none;
+}
+.content {
+  position: absolute;
+  height: 100%;
+  top: 28px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  font-family: 'Droid Sans Mono', monospace;
+  background: white;
+  margin: 0px 0px 10px 0px;
+  text-align: left;
+  font-size: 11px;
+  line-height: 1.2;
+  overflow: auto;
+  white-space: pre;
+  border-top: 1px solid #ddd;
+}
+[type=radio]:checked~label {
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
+}
+[type=radio]:checked~label~.content {
+  z-index: 1;
+}
+pre {
+  background: #f5f5f5;
+  margin: 10px 0px 10px 0px;
+  text-align: left;
+  font-size: 11px;
+  line-height: 1.2;
+  overflow: auto;
+  white-space: pre;
+  box-shadow: 5px 5px 0 #DDD;
+  padding: 10px;
+}
+</style>
 
 <div class="tabs">
     

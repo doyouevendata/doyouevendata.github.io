@@ -7,6 +7,77 @@ Till now I was styling the graphs in Photoshop rather than prepare them properly
 
 We'll gonna play with San Francisco average monthly temperatures availaible <a href="http://www.holiday-weather.com/san_francisco/averages/">here</a>.</p>
 
+<style>
+   .tabs {
+	position: relative;
+	min-height: 650px;
+	/* This part sucks */
+	clear: both;
+	margin: 25px 0;
+	font-family: 'Helvetica';
+}
+.tab {
+	float: left;
+}
+.tab label {
+	background: none;
+	padding: 10px;
+	cursor: pointer;
+	margin-left: -1px;
+	position: relative;
+	left: 1px;
+	background: none;
+	color: #808080;
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	border-color: #ddd;
+	border-radius: 5px 5px 0px 0px;
+	border-bottom-color: white;
+	padding: 11px;
+}
+.tab [type=radio] {
+	display: none;
+}
+.content {
+	position: absolute;
+	height: 100%;
+	top: 28px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 20px;
+	font-family: 'Droid Sans Mono', monospace;
+	background: white;
+	margin: 0px 0px 10px 0px;
+	text-align: left;
+	font-size: 11px;
+	line-height: 1.2;
+	overflow: auto;
+	white-space: pre;
+	border-top: 1px solid #ddd;
+}
+[type=radio]:checked~label {
+	background: white;
+	border-bottom: 1px solid white;
+	z-index: 2;
+}
+[type=radio]:checked~label~.content {
+	z-index: 1;
+}
+pre {
+	background: #f5f5f5;
+	margin: 10px 0px 10px 0px;
+	text-align: left;
+	font-size: 11px;
+	line-height: 1.2;
+	overflow: auto;
+	white-space: pre;
+	box-shadow: 5px 5px 0 #DDD;
+	padding: 10px;
+}
+</style>
+
+
 What we have to do before plotting a graph:
 ```r
 a <- c(1:12)
@@ -210,9 +281,70 @@ et voila:
   <img src="/images/beautifying_plot/final.png">
 </p>
 
-The whole code:
+You will find the complete code at the end of this article.
+
+#### Bars in different colors
+
+The above plot is simple and not crazy at all. Let's add more colors showing both Celsius and Fahrenheit degrees on one plot. First step, we need to change the white coloro of bars to something more fancy. I propose <code>#ff9900</code>, or as Html Css Color calls it, Orage Peel. Change:
 
 ```r
+plot_ly(
+  x = weather$month,
+  y = weather$temp,
+  type = "bar",
+  marker = list(color = '#ff9900'),
+) %>%
+```
+
+Then we need to add Fahrenheit data:
+
+```r
+c <- c(50,	52,	52,	52,	55,	55,	57,	57,	57,	57,	55,	50)
+weather$fahrenheit <- c
+```
+
+and plot it:
+
+```r
+plotly(...)
+ %>%
+ add_trace(y = ~weather$fahrenheit) %>%
+ layout(...)          
+```            
+<p align="justify">R is quite intelligent and seeing that we are plotting two types of bars it have added a legend on the side. Here is what we gonna do to add a final cut to the plot:</p>
+* add names to the traces, so the legend says "Celsius degrees, Farenheit degrees", not trace 0 and trace 1
+* change Y axis title, as its no longer Celsius degrees
+* add color to Fahrenheit bars (what do you think about #9119b8, called Dark Orchid?)
+
+```r
+plot_ly(
+.
+.
+  name = "Celsius degrees"
+) %>%
+  add_trace(y = ~weather$fahrenheit,
+            marker = list(color = '#9119b8' ),
+            name = "Fahrenheit degrees"
+            ) %>%
+```
+
+Here's the result:
+
+<p align="center">
+  <img src="/images/beautifying_plot/final_color.png">
+</p>
+
+
+Whole code:
+
+<div class="tabs">
+    
+   <div class="tab">
+       <input type="radio" id="tab-1" name="tab-group-1" checked>
+       <label for="tab-1">ui.R</label>   
+       <div class="content">
+           <pre class="code">
+        <code class="r">
 a <- c(1:12)
 b <- c(10,	11,	11,	11,	13,	13,	14,	14,	14,	14,	13,	10)
 weather <- data.frame(month=a,temp=b)
@@ -245,4 +377,58 @@ plot_ly(
                 size = 25),
               margin = 10
         )
-```
+        </code>
+      </pre>
+       </div> 
+   </div>
+    
+   <div class="tab">
+       <input type="radio" id="tab-2" name="tab-group-1">
+       <label for="tab-2">server.R</label>   
+       <div class="content">
+           <pre class="code">
+        <code class="r">
+a <- c(1:12)
+b <- c(10,	11,	11,	11,	13,	13,	14,	14,	14,	14,	13,	10)
+c <- c(50,	52,	52,	52,	55,	55,	57,	57,	57,	57,	55,	50)
+weather <- data.frame(month=a,temp=b, fahrenheit=c)
+weather$month <- c('Jan', 'Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
+weather$month <- factor(weather$month, levels = c("Jan", "Feb", "Mar", 
+                                                  "Apr", "May", "Jun", 
+                                                  "Jul", "Aug", "Sep", 
+                                                  "Oct", "Nov", "Dec"))
+
+plot_ly(
+  x = weather$month,
+  y = weather$temp,
+  type = "bar",
+  marker = list(color = '#ff9900'),
+  name = "Celsius degrees"
+) %>%
+  add_trace(y = ~weather$fahrenheit,
+            marker = list(color = '#9119b8' ),
+            name = "Fahrenheit degrees"
+            ) %>%
+  layout(paper_bgcolor='#5875D5',plot_bgcolor='#5875D5',
+         xaxis = list(
+           color = '#ffffff',
+           tickangle = -45),
+         yaxis = list(
+           color = '#ffffff',
+           title = "degrees"),
+         title = "Average Temperature: San Francisco",
+         titlefont = list(
+           family = "Agency FB",
+           size = 45,
+           color = '#ffffff'),
+         font = list(
+           family = "Agency FB",
+           size = 25),
+         margin = 10,
+         legend = list(font=list(color = '#ffffff'))
+  )
+
+</code></pre>
+       </div> 
+   </div>    
+</div>

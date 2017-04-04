@@ -35,6 +35,7 @@ weather
 Plotly's graph description places attributes into two categories: <code>traces</code> (which describe a single series of data in a graph) and <code>layout</code> attributes that apply to the rest of the chart, like the title, xaxis, or annotations).
 
 Here is a simple example of a plotly chart inlined with links to each attribute's reference section.</p>
+
 ```r
 library(plotly)
 
@@ -57,6 +58,7 @@ p <- plot_ly(economics,
  ```
  
 <p align="justify">Having that in mind let’s create the simplest possible barplot with empty layout attribute:</p>
+
 ```r
 p <- plot_ly(
     x = weather$month,
@@ -65,6 +67,7 @@ p <- plot_ly(
 ) %>%
 layout()
 ```
+
 <p align="center">
   <img src="/images/beautifying_plot/naked_plot.png">
 </p>

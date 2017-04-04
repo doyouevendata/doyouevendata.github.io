@@ -245,7 +245,7 @@ plotly(...)
 
 * change Y axis title, as its no longer Celsius degrees
 
-* add color to Fahrenheit bars (what do you think about #9119b8, called Dark Orchid?)
+* add color to Fahrenheit bars (what do you think about <code>#9119b8</code>, called Dark Orchid?)
 
 ```r
 plot_ly(

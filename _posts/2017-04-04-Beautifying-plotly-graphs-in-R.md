@@ -9,71 +9,71 @@ We'll gonna play with San Francisco average monthly temperatures availaible <a h
 
 <style>
    .tabs {
-	position: relative;
-	min-height: 650px;
-	/* This part sucks */
-	clear: both;
-	margin: 25px 0;
-	font-family: 'Helvetica';
+  position: relative;
+  min-height: 650px;
+  /* This part sucks */
+  clear: both;
+  margin: 25px 0;
+  font-family: 'Helvetica';
 }
 .tab {
-	float: left;
+  float: left;
 }
 .tab label {
-	background: none;
-	padding: 10px;
-	cursor: pointer;
-	margin-left: -1px;
-	position: relative;
-	left: 1px;
-	background: none;
-	color: #808080;
-	border-style: solid;
-	border-width: 1px 1px 1px 1px;
-	border-color: #ddd;
-	border-radius: 5px 5px 0px 0px;
-	border-bottom-color: white;
-	padding: 11px;
+  background: none;
+  padding: 10px;
+  cursor: pointer;
+  margin-left: -1px;
+  position: relative;
+  left: 1px;
+  background: none;
+  color: #808080;
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: #ddd;
+  border-radius: 5px 5px 0px 0px;
+  border-bottom-color: white;
+  padding: 11px;
 }
 .tab [type=radio] {
-	display: none;
+  display: none;
 }
 .content {
-	position: absolute;
-	height: 100%;
-	top: 28px;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	padding: 20px;
-	font-family: 'Droid Sans Mono', monospace;
-	background: white;
-	margin: 0px 0px 10px 0px;
-	text-align: left;
-	font-size: 11px;
-	line-height: 1.2;
-	overflow: auto;
-	white-space: pre;
-	border-top: 1px solid #ddd;
+  position: absolute;
+  height: 100%;
+  top: 28px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  font-family: 'Droid Sans Mono', monospace;
+  background: white;
+  margin: 0px 0px 10px 0px;
+  text-align: left;
+  font-size: 11px;
+  line-height: 1.2;
+  overflow: auto;
+  white-space: pre;
+  border-top: 1px solid #ddd;
 }
 [type=radio]:checked~label {
-	background: white;
-	border-bottom: 1px solid white;
-	z-index: 2;
+  background: white;
+  border-bottom: 1px solid white;
+  z-index: 2;
 }
 [type=radio]:checked~label~.content {
-	z-index: 1;
+  z-index: 1;
 }
 pre {
-	background: #f5f5f5;
-	margin: 10px 0px 10px 0px;
-	text-align: left;
-	font-size: 11px;
-	line-height: 1.2;
-	overflow: auto;
-	white-space: pre;
-	box-shadow: 5px 5px 0 #DDD;
-	padding: 10px;
+  background: #f5f5f5;
+  margin: 10px 0px 10px 0px;
+  text-align: left;
+  font-size: 11px;
+  line-height: 1.2;
+  overflow: auto;
+  white-space: pre;
+  box-shadow: 5px 5px 0 #DDD;
+  padding: 10px;
 }
 </style>
 
@@ -81,7 +81,7 @@ pre {
 What we have to do before plotting a graph:
 ```r
 a <- c(1:12)
-b <- c(23, 28,	38, 54,	73, 42,	24, 27,	78, 63,	41, 51)
+b <- c(23, 28,  38, 54,  73, 42,  24, 27,  78, 63,  41, 51)
 weather <- data.frame(month=a,temp=b)
 weather
    month temp
@@ -99,13 +99,13 @@ weather
 12    12   10
 ```
 
-<p align="justify">Quick  reminder  about plotly:
+Quick  reminder  about plotly:
 
-<code>plotly</code> charts are described declaratively in the call signature of <code>plotly::plot_ly</code>, <code>plotly::add_trace</code>, and <code>plotly::layout</code>. Every aspect of a plotly chart (the colors, the grid-lines, the data, and so on) has a corresponding key in these call signatures. This page contains an extensive list of these attributes.
+<p align="justify"><code>plotly</code> charts are described declaratively in the call signature of <code>plotly::plot_ly</code>, <code>plotly::add_trace</code>, and <code>plotly::layout</code>. Every aspect of a plotly chart (the colors, the grid-lines, the data, and so on) has a corresponding key in these call signatures. This page contains an extensive list of these attributes.</p>
 
-Plotly's graph description places attributes into two categories: <code>traces</code> (which describe a single series of data in a graph) and <code>layout</code> attributes that apply to the rest of the chart, like the title, xaxis, or annotations).
+<p align="justify">Plotly's graph description places attributes into two categories: <code>traces</code> (which describe a single series of data in a graph) and <code>layout</code> attributes that apply to the rest of the chart, like the title, xaxis, or annotations).</p>
 
-Here is a simple example of a plotly chart inlined with links to each attribute's reference section.</p>
+<p align="justify">Here is a simple example of a plotly chart inlined with links to each attribute's reference section.</p>
 
 ```r
 library(plotly)
@@ -126,7 +126,7 @@ p <- plot_ly(economics,
          yaxis = list(           # layout's yaxis is a named list. List of valid keys: /r/reference/#layout-yaxis
             title = "uidx")     # yaxis's title: /r/reference/#layout-yaxis-title
   )
- ```
+```
  
 <p align="justify">Having that in mind let’s create the simplest possible barplot with empty layout attribute:</p>
 
@@ -181,7 +181,7 @@ plot_ly(
 
 ```r
 layout(paper_bgcolor='#4666d1',
- 	     plot_bgcolor='#4666d1',
+        plot_bgcolor='#4666d1',
        xaxis = list(place for arguments),
        yaxis = list(place for arguments)
 )
@@ -238,11 +238,11 @@ xaxis = list(
 
 ```r
 yaxis = list(
-              color = '#ffffff',
-              title = "degrees in Celsius")
- ```
- 
-<p align="justify">But surely you would say “hey, but I want to show Celsius degrees by printing this cute little circle, like everyone else!” No worries.  Change "degrees in Celsius" to "degrees in \U2103" and you have it. (why U2130 changes to the cute circle? <a href="http://www.fileformat.info/info/unicode/char/2103/index.htm">Here</a> is the answer.)</p>
+        color = '#ffffff',
+        title = "degrees in Celsius")
+
+```
+<p align="justify">But surely you would say “hey, but I want to show Celsius degrees by printing this cute little circle, like everyone else!” No worries.  Change <code>"degrees in Celsius"</code> to <code>"degrees in \U2103"</code> and you have it. (why U2130 changes to the cute circle? <a href="http://www.fileformat.info/info/unicode/char/2103/index.htm">Here</a> is the answer.)</p>
 
 #### Styling titles
 
@@ -299,7 +299,7 @@ plot_ly(
 Then we need to add Fahrenheit data:
 
 ```r
-c <- c(50,	52,	52,	52,	55,	55,	57,	57,	57,	57,	55,	50)
+c <- c(50,  52,  52,  52,  55,  55,  57,  57,  57,  57,  55,  50)
 weather$fahrenheit <- c
 ```
 
@@ -318,8 +318,8 @@ plotly(...)
 
 ```r
 plot_ly(
-.
-.
+...
+...
   name = "Celsius degrees"
 ) %>%
   add_trace(y = ~weather$fahrenheit,
@@ -346,7 +346,7 @@ Whole code:
            <pre class="code">
         <code class="r">
 a <- c(1:12)
-b <- c(10,	11,	11,	11,	13,	13,	14,	14,	14,	14,	13,	10)
+b <- c(10,  11,  11,  11,  13,  13,  14,  14,  14,  14,  13,  10)
 weather <- data.frame(month=a,temp=b)
 weather$month <- c('Jan', 'Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
 weather$month <- factor(weather$month, levels = c("Jan", "Feb", "Mar", 
@@ -389,8 +389,8 @@ plot_ly(
            <pre class="code">
         <code class="r">
 a <- c(1:12)
-b <- c(10,	11,	11,	11,	13,	13,	14,	14,	14,	14,	13,	10)
-c <- c(50,	52,	52,	52,	55,	55,	57,	57,	57,	57,	55,	50)
+b <- c(10,  11,  11,  11,  13,  13,  14,  14,  14,  14,  13,  10)
+c <- c(50,  52,  52,  52,  55,  55,  57,  57,  57,  57,  55,  50)
 weather <- data.frame(month=a,temp=b, fahrenheit=c)
 weather$month <- c('Jan', 'Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
 weather$month <- factor(weather$month, levels = c("Jan", "Feb", "Mar", 

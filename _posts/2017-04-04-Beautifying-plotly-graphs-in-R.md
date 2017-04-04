@@ -341,7 +341,7 @@ Whole code:
     
    <div class="tab">
        <input type="radio" id="tab-1" name="tab-group-1" checked>
-       <label for="tab-1">ui.R</label>   
+       <label for="tab-1">white</label>   
        <div class="content">
            <pre class="code">
         <code class="r">
@@ -384,7 +384,7 @@ plot_ly(
     
    <div class="tab">
        <input type="radio" id="tab-2" name="tab-group-1">
-       <label for="tab-2">server.R</label>   
+       <label for="tab-2">purple-orange</label>   
        <div class="content">
            <pre class="code">
         <code class="r">

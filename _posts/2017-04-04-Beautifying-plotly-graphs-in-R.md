@@ -77,11 +77,11 @@ layout()
 
 #### Changing background color
 
-<p align="justify">I’m gonna kick off with changing the background. To do so, we have to add 2 keys to <code>layout</code>:<code>paper_bgcolor</code> (Sets the color of paper where the graph is drawn.) and  <code>plot_bgcolor</code> (Sets the color of plotting area in-between x and y axes.) I chose a nice, royal blue.</p>
+<p align="justify">I’m gonna kick off with changing the background. To do so, we have to add 2 keys to <code>layout</code>: <code>paper_bgcolor</code> (sets the color of paper where the graph is drawn.) and  <code>plot_bgcolor</code> (sets the color of plotting area in-between x and y axes.) I chose a nice, royal blue.</p>
 
 ```r
-layout(paper_bgcolor='#4666d1',
-       plot_bgcolor='#4666d1')
+layout(paper_bgcolor='#5875D5',
+       plot_bgcolor='#5875D5')
 ```
 
 <p align="center">
@@ -92,7 +92,7 @@ layout(paper_bgcolor='#4666d1',
 
 #### Changing bars color
 
-<p align="justify">If you did too, you can now see that the plot became completely unreadable. Let’s fix it by changing bar’s color to white, adding <code>marker = list(color = '#ffffff')</code> (Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `cmin` and `cmax` if set.) to <code>plot_ly</code> part:</p>
+<p align="justify">If you did too, you can now see that the plot became completely unreadable. Let’s fix it by changing bar’s color to white, adding <code>marker = list(color = '#ffffff')</code> (sets the marker color; it accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `cmin` and `cmax` if set) to <code>plot_ly</code> part:</p>
 
 ```r
 plot_ly(
@@ -201,7 +201,15 @@ font = list(
 <p align="justify">As you can see, my plot is too big and doesn’t fit to the window. Let’s add a 10px <code>margin</code>:</p>
 
 ```r
-margin = 10
+         title = "Average Temperature: San Francisco",
+         titlefont = list(
+           family = "Agency FB",
+           size = 45,
+           color = '#ffffff'),
+         font = list(
+           family = "Agency FB",
+           size = 25),
+         margin = 10,
 ```
 
 et voila:

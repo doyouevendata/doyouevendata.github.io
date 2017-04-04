@@ -214,7 +214,7 @@ You will find the complete code at the end of this article.
 
 #### Bars in different colors
 
-The above plot is simple and not crazy at all. Let's add more colors showing both Celsius and Fahrenheit degrees on one plot. First step, we need to change the white coloro of bars to something more fancy. I propose <code>#ff9900</code>, or as Html Css Color calls it, Orage Peel. Change:
+The above plot is simple and not crazy at all. Let's add more colors showing both Celsius and Fahrenheit degrees on one plot. First step, we need to change the white color of bars to something more fancy. I propose <code>#ff9900</code>, or as Html Css Color calls it, Orage Peel. Change:
 
 ```r
 plot_ly(
@@ -240,8 +240,11 @@ plotly(...)
  layout(...)          
 ```            
 <p align="justify">R is quite intelligent and seeing that we are plotting two types of bars it have added a legend on the side. Here is what we gonna do to add a final cut to the plot:</p>
+
 * add names to the traces, so the legend says "Celsius degrees, Farenheit degrees", not trace 0 and trace 1
+
 * change Y axis title, as its no longer Celsius degrees
+
 * add color to Fahrenheit bars (what do you think about #9119b8, called Dark Orchid?)
 
 ```r

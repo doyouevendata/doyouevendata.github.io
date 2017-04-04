@@ -5,7 +5,7 @@ title: Beautifying plotly graphs in R.
 <p align="justify">Hello!
 Till now I was styling the graphs in Photoshop rather than prepare them properly in RStudio (sooo lame, huh?) But I decided it's time to learn how to do it, so here is the little tutorial about making a plot beautiful using only R and plotly package. 
 
-We'll gonna play with San Francisco average monthly temperatures availaible <a href="http://www.holiday-weather.com/san_francisco/averages/">here</a></p>
+We'll gonna play with San Francisco average monthly temperatures availaible <a href="http://www.holiday-weather.com/san_francisco/averages/">here</a>.</p>
 
 What we have to do before plotting a graph:
 ```r
@@ -28,11 +28,11 @@ weather
 12    12   10
 ```
 
-Quick  reminder  about plotly:
-<p align="justify">
-plotly charts are described declaratively in the call signature of plotly::plot_ly, plotly::add_trace, and plotly::layout. Every aspect of a plotly chart (the colors, the grid-lines, the data, and so on) has a corresponding key in these call signatures. This page contains an extensive list of these attributes.
+<p align="justify">Quick  reminder  about plotly:
 
-Plotly's graph description places attributes into two categories: traces (which describe a single series of data in a graph) and layout attributes that apply to the rest of the chart, like the title, xaxis, or annotations).
+>plotly charts are described declaratively in the call signature of plotly::plot_ly, plotly::add_trace, and plotly::layout. Every aspect >of a plotly chart (the colors, the grid-lines, the data, and so on) has a corresponding key in these call signatures. This page >contains an extensive list of these attributes.
+
+>Plotly's graph description places attributes into two categories: traces (which describe a single series of data in a graph) and layout >attributes that apply to the rest of the chart, like the title, xaxis, or annotations).
 
 Here is a simple example of a plotly chart inlined with links to each attribute's reference section.</p>
 ```r

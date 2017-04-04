@@ -69,16 +69,14 @@ layout()
   <img src="/images/beautifying_plot/naked_plot.png">
 </p>
 
-<p align="justify">and  start styling it! <a href="https://plot.ly/r/reference/#layout">Here</a> you can check all possible layout properties.
+<p align="justify">Now we can start styling it! <a href="https://plot.ly/r/reference/#layout">Here</a> you can check all possible layout properties.
 
 #### Changing background color
 
 <p align="justify">I’m gonna kick off with changing the background. To do so, we have to add 2 keys to <code>layout</code>:
 <code>paper_bgcolor</code> (Sets the color of paper where the graph is drawn.) and  <code>plot_bgcolor</code> (Sets the color of plotting area in-between x and y axes.) I chose a nice blue.</p>
 
-```r
-layout(paper_bgcolor='#4666d1',plot_bgcolor='#4666d1')
-```
+`layout(paper_bgcolor='#4666d1',plot_bgcolor='#4666d1')`
 
 <p align="center">
   <img src="/images/beautifying_plot/blue.png">

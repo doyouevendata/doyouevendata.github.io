@@ -76,7 +76,10 @@ layout()
 <p align="justify">I’m gonna kick off with changing the background. To do so, we have to add 2 keys to <code>layout</code>:
 <code>paper_bgcolor</code> (Sets the color of paper where the graph is drawn.) and  <code>plot_bgcolor</code> (Sets the color of plotting area in-between x and y axes.) I chose a nice blue.</p>
 
-`layout(paper_bgcolor='#4666d1',plot_bgcolor='#4666d1')`
+```r
+layout(paper_bgcolor='#4666d1',
+       plot_bgcolor='#4666d1')
+```
 
 <p align="center">
   <img src="/images/beautifying_plot/blue.png">
@@ -87,6 +90,7 @@ layout()
 #### Changing bars color
 
 <p align="justify">If you did too, you can now see that the plot became completely unreadable. Let’s fix it by changing bar’s color to white, adding <code>marker = list(color = '#ffffff')</code> (Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `cmin` and `cmax` if set.) to <code>plot_ly</code> part:</p>
+
 ```r
 plot_ly(
     x = weather$month,
@@ -123,9 +127,11 @@ So far, we have this:
 </p>
 
 <p align="justify">How about adding some text, so we would know what are we looking at? Let’s replace X axis values by month’s names. </p>
+
 `weather$month <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")`
 
 <p align="justify">Let’s make them a factor and add levels, so R knows that they have specific order. (You can read more about it in <a href="https://doyouevendata.github.io/Extra-Simple-GGPLOT2-Graphs-in-RStudio/">previous post</a>, section Factors and Levels)</p>
+
 ```r
 factor(weather$month, levels = c("Jan", "Feb", "Mar", 
                                         "Apr", "May", "Jun", 
@@ -140,7 +146,9 @@ factor(weather$month, levels = c("Jan", "Feb", "Mar",
 </p>
 
 #### Rotating axis text
+
 <p align="justify">I don’t like it that way, I prefer them rotated a bit. To rotate, add to xaxis a <code>tickangle</code> key.</p>
+
 ```r
 xaxis = list(
         color = '#ffffff',
@@ -153,6 +161,7 @@ xaxis = list(
 </p>
 
 <p align="justify">Much better. We don’t need to add title to the x axis, I think we can easily guess what it represents, but y axis could use one, therefore we add <code>title</code> key to the yaxis part:</p>
+
 ```r
 yaxis = list(
               color = '#ffffff',
@@ -164,11 +173,13 @@ yaxis = list(
 #### Styling titles
 
 <p align="justify">We nearly have it, we are only missing the general title and some font styling. Let’s add a <code>title</code> to the general layout part:</p>
+
 ```r
 title = "Average Temperature: San Francisco"
 ```
 
-<p align="justify">and choose font properties. Again, we will wrap arguments in <code>list()</code>. Read more about title font <a href="https://plot.ly/r/reference/#layout-title">here</a>.
+<p align="justify">and choose font properties. Again, we will wrap arguments in <code>list()</code>. Read more about title font <a href="https://plot.ly/r/reference/#layout-title">here</a>.</p>
+
 ```r
 titlefont = list(
                 family = "Agency FB",
@@ -177,17 +188,21 @@ titlefont = list(
 ```            
 
 <p align="justify">I chose the Agency FB font, you can use anything that is present in your operating system. Now what is left is to define the same font for both x and y axis:</p>
+
 ```r
 font = list(
                 family = "Agency FB",
-                size = 15)
+                size = 25)
 ```   
 
 <p align="justify">As you can see, my plot is too big and doesn’t fit to the window. Let’s add a 10px <code>margin</code>:</p>
+
 ```r
 margin = 10
 ```
+
 et voila:
+
 <p align="center">
   <img src="/images/beautifying_plot/final.png">
 </p>
@@ -196,10 +211,10 @@ The whole code:
 
 ```r
 a <- c(1:12)
-b <- c(23, 28,	38, 54,	73, 42,	24, 27,	78, 63,	41, 51)
+b <- c(10,	11,	11,	11,	13,	13,	14,	14,	14,	14,	13,	10)
 weather <- data.frame(month=a,temp=b)
-weather$month <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-factor(weather$month, levels = c("Jan", "Feb", "Mar", 
+weather$month <- c('Jan', 'Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')
+weather$month <- factor(weather$month, levels = c("Jan", "Feb", "Mar", 
                                         "Apr", "May", "Jun", 
                                         "Jul", "Aug", "Sep", 
                                         "Oct", "Nov", "Dec"))
@@ -224,7 +239,7 @@ plot_ly(
                 color = '#ffffff'),
               font = list(
                 family = "Agency FB",
-                size = 15),
+                size = 25),
               margin = 10
         )
 ```

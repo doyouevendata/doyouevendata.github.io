@@ -77,7 +77,7 @@ layout()
 
 #### Changing background color
 
-<p align="justify">I’m gonna kick off with changing the background. To do so, we have to add 2 keys to <code>layout</code>:<code>paper_bgcolor</code> (Sets the color of paper where the graph is drawn.) and  <code>plot_bgcolor</code> (Sets the color of plotting area in-between x and y axes.) I chose a nice blue.</p>
+<p align="justify">I’m gonna kick off with changing the background. To do so, we have to add 2 keys to <code>layout</code>:<code>paper_bgcolor</code> (Sets the color of paper where the graph is drawn.) and  <code>plot_bgcolor</code> (Sets the color of plotting area in-between x and y axes.) I chose a nice, royal blue.</p>
 
 ```r
 layout(paper_bgcolor='#4666d1',
@@ -214,7 +214,7 @@ You will find the complete code at the end of this article.
 
 #### Bars in different colors
 
-The above plot is simple and not crazy at all. Let's add more colors showing both Celsius and Fahrenheit degrees on one plot. First step, we need to change the white color of bars to something more fancy. I propose <code>#ff9900</code>, or as Html Css Color calls it, Orage Peel. Change:
+<p align="justify">The above plot is simple and not crazy at all. Let's add more colors showing both Celsius and Fahrenheit degrees on one plot. First step, we need to change the white color of bars to something more fancy. I propose <code>#ff9900</code>, or as Html Css Color calls it, Orage Peel. Change:</p>
 
 ```r
 plot_ly(

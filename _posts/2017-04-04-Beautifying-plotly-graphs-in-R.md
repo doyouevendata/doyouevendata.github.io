@@ -228,8 +228,7 @@ plot_ly(
 Then we need to add Fahrenheit data:
 
 ```r
-c <- c(50,  52,  52,  52,  55,  55,  57,  57,  57,  57,  55,  50)
-weather$fahrenheit <- c
+weather$fahrenheit <- c(50,  52,  52,  52,  55,  55,  57,  57,  57,  57,  55,  50)
 ```
 
 and plot it:

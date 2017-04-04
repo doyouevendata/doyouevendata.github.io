@@ -265,7 +265,7 @@ Here's the result:
 </p>
 
 
-Whole code:
+Full code:
 <style>
    .tabs {
   position: relative;

@@ -30,9 +30,9 @@ weather
 
 <p align="justify">Quick  reminder  about plotly:
 
->plotly charts are described declaratively in the call signature of plotly::plot_ly, plotly::add_trace, and plotly::layout. Every aspect >of a plotly chart (the colors, the grid-lines, the data, and so on) has a corresponding key in these call signatures. This page >contains an extensive list of these attributes.
+<code>plotly</code> charts are described declaratively in the call signature of <code>plotly::plot_ly/<code>, <code>plotly::add_trace</code>, and <code>plotly::layout</code>. Every aspect of a plotly chart (the colors, the grid-lines, the data, and so on) has a corresponding key in these call signatures. This page contains an extensive list of these attributes.
 
->Plotly's graph description places attributes into two categories: traces (which describe a single series of data in a graph) and layout >attributes that apply to the rest of the chart, like the title, xaxis, or annotations).
+Plotly's graph description places attributes into two categories: <code>traces</code> (which describe a single series of data in a graph) and <code>layout</code> attributes that apply to the rest of the chart, like the title, xaxis, or annotations).
 
 Here is a simple example of a plotly chart inlined with links to each attribute's reference section.</p>
 ```r
@@ -71,13 +71,12 @@ layout()
 
 <p align="justify">and  start styling it! <a href="https://plot.ly/r/reference/#layout">Here</a> you can check all possible layout properties.
 
-####Changing background color
+#### Changing background color
 
-<p align="justify">I’m gonna kick off with changing the background. To do so, we have to add 2 keys to layout:
-paper_bgcolor (Sets the color of paper where the graph is drawn.) and  plot_bgcolor (Sets the color of plotting area in-between x and y axes.) I chose a nice blue.</p>
+<p align="justify">I’m gonna kick off with changing the background. To do so, we have to add 2 keys to <code>layout</code>:
+<code>paper_bgcolor</code> (Sets the color of paper where the graph is drawn.) and  <code>plot_bgcolor</code> (Sets the color of plotting area in-between x and y axes.) I chose a nice blue.</p>
+
 ```r
-(…)
-   ) %>%
 layout(paper_bgcolor='#4666d1',plot_bgcolor='#4666d1')
 ```
 
@@ -87,9 +86,9 @@ layout(paper_bgcolor='#4666d1',plot_bgcolor='#4666d1')
 
 
 
-####Changing bars color
+#### Changing bars color
 
-<p align="justify">If you did too, you can now see that the plot became completely unreadable. Let’s fix it by changing bar’s color to white, adding marker = list(color = '#ffffff') (Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `cmin` and `cmax` if set.) to plot_ly part:</p>
+<p align="justify">If you did too, you can now see that the plot became completely unreadable. Let’s fix it by changing bar’s color to white, adding <code>marker = list(color = '#ffffff')</code> (Sets the marker color. It accepts either a specific color or an array of numbers that are mapped to the colorscale relative to the max and min values of the array or relative to `cmin` and `cmax` if set.) to <code>plot_ly</code> part:</p>
 ```r
 plot_ly(
     x = weather$month,
@@ -99,9 +98,9 @@ plot_ly(
    )
 ```
 
-####Styling axis
+#### Styling axis
 
-<p align="justify">Now we can proceed to styling X and Y axis.  We will continue adding the keys to the layout part, right after plot_bgcolor. As both xaxis and yaxis will have many arguments, we will wrap them in list(). See below:</p>
+<p align="justify">Now we can proceed to styling X and Y axis.  We will continue adding the keys to the <code>layout</code> part, right after <code>plot_bgcolor</code>. As both xaxis and yaxis will have many arguments, we will wrap them in <code>list()</code>. See below:</p>
 ```r
 layout(paper_bgcolor='#4666d1',
  	     plot_bgcolor='#4666d1',
@@ -127,7 +126,7 @@ So far, we have this:
 weather$month <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 ```
 
-<p align="justify">Let’s make them a factor and add levels, so R knows that they have specific order. (You can read more about it in <a href="https://doyouevendata.github.io/Extra-Simple-GGPLOT2-Graphs-in-RStudio/">previous post</a>, section Factors and Levels</p>
+<p align="justify">Let’s make them a factor and add levels, so R knows that they have specific order. (You can read more about it in <a href="https://doyouevendata.github.io/Extra-Simple-GGPLOT2-Graphs-in-RStudio/">previous post</a>, section Factors and Levels)</p>
 ```r
 factor(weather$month, levels = c("Jan", "Feb", "Mar", 
                                         "Apr", "May", "Jun", 
@@ -141,19 +140,20 @@ factor(weather$month, levels = c("Jan", "Feb", "Mar",
   <img src="/images/beautifying_plot/months_prosto.png">
 </p>
 
-####Rotating axis text
-<p align="justify">I don’t like it that way, I prefer them rotated a bit. To rotate, add to xaxis a tickangle key.</p>
+#### Rotating axis text
+<p align="justify">I don’t like it that way, I prefer them rotated a bit. To rotate, add to xaxis a <code>tickangle</code> key.</p>
 ```r
 xaxis = list(
         color = '#ffffff',
         tickangle = -45
 ),
 ```
+
 <p align="center">
   <img src="/images/beautifying_plot/months_krzywo.png">
 </p>
 
-<p align="justify">Much better. We don’t need to add title to the x axis, I think we can easily guess what it represents, but y axis could use one, therefore we add title key to the yaxis part:</p>
+<p align="justify">Much better. We don’t need to add title to the x axis, I think we can easily guess what it represents, but y axis could use one, therefore we add <code>title</code> key to the yaxis part:</p>
 ```r
 yaxis = list(
               color = '#ffffff',
@@ -162,14 +162,14 @@ yaxis = list(
  
 <p align="justify">But surely you would say “hey, but I want to show Celsius degrees by printing this cute little circle, like everyone else!” No worries.  Change "degrees in Celsius" to "degrees in \U2103" and you have it. (why U2130 changes to the cute circle? <a href="http://www.fileformat.info/info/unicode/char/2103/index.htm">Here</a> is the answer.)</p>
 
-####Styling titles
+#### Styling titles
 
-<p align="justify">We nearly have it, we are only missing the general title and some font styling. Let’s add a title:</p>
+<p align="justify">We nearly have it, we are only missing the general title and some font styling. Let’s add a <code>title</code> to the general layout part:</p>
 ```r
 title = "Average Temperature: San Francisco"
 ```
 
-<p align="justify">and choose font properties. Again, we will wrap arguments in list(). Read more about title font <a href="https://plot.ly/r/reference/#layout-title">here</a>.
+<p align="justify">and choose font properties. Again, we will wrap arguments in <code>list()</code>. Read more about title font <a href="https://plot.ly/r/reference/#layout-title">here</a>.
 ```r
 titlefont = list(
                 family = "Agency FB",
@@ -184,7 +184,7 @@ font = list(
                 size = 15)
 ```   
 
-p align="justify">As you can see, my plot is too big and doesn’t fit to the window. Let’s add a 10px margin:</p>
+<p align="justify">As you can see, my plot is too big and doesn’t fit to the window. Let’s add a 10px <code>margin</code>:</p>
 ```r
 margin = 10
 ```

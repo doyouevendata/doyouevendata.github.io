@@ -73,7 +73,7 @@ layout()
   <img src="/images/beautifying_plot/naked_plot.png">
 </p>
 
-<p align="justify">Now we can start styling it! <a href="https://plot.ly/r/reference/#layout">Here</a> you can check all possible layout properties.
+<p align="justify">Now we can start styling it! <a href="https://plot.ly/r/reference/#layout">Here</a> you can check all possible layout properties.</p>
 
 #### Changing background color
 

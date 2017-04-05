@@ -33,6 +33,7 @@ Hello! Recently I was asked to create an R program showing one graph and dynamic
 	border-radius: 5px 5px 0px 0px;
 	border-bottom-color: white;
 	padding: 11px;
+	padding-bottom: 5px;
 }
 .tab [type=radio] {
 	display: none;

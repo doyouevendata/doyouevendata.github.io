@@ -272,6 +272,9 @@ Here's the result:
 <p align="center">
   <img src="/images/beautifying_plot/final_color.png">
 </p>
+<p align="center">
+  <img src="/images/beautifying_plot/meme.png">
+</p>
 
 
 Full code:

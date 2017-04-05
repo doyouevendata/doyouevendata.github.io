@@ -305,6 +305,7 @@ Full code:
   border-radius: 5px 5px 0px 0px;
   border-bottom-color: white;
   padding: 11px;
+  padding-bottom: 5px;
 }
 .tab [type=radio] {
   display: none;

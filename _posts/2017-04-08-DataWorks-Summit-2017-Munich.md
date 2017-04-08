@@ -51,7 +51,19 @@ Technical and business sessions were held in 6 different rooms simultaneously. T
 
 Good thing about DWS is that most if not all session will be available on YouTube, so you can catch up with those you missed. I strongly encourage you to do so.
 
-I will now give you some feedback about session I have seen and find most interresting ones.
+Time for quick summaries of some of the sessions I have seen.
+
+---
+
+**INTERACTIVE ANALYTICS AT SCALE IN APACHE HIVE USING DRUID**
+
+If you need to create and then publish dashboards that are built on large amount fo data, then Druid is something you may want to check on. One use case would be for data that you prepare in Spark and then publish in Druid. The advantage of Druid compared to SparkSQL is latency. Druid indexes all its data. So if you need to create visualization layer in your company with large amount of people using it, have a look.
+
+---
+
+
+
+
 
 
 

@@ -72,7 +72,7 @@ This is something that I'd like to play around definitelly. You should expect de
 SAM - among others - is a graphical tool that lets you build whole streaming process without need to write a code. Most importantly if at any moment in time schema changes at any place in your process, adjusting it is honestly really easy. Normally you'd have to change code, here you have everything accessible from nice GUI.
 
 ![Hortonworks Streaming Analytics Manager](../images/DWS2017/streaming-analytics-manager.png)
-<center>*Source: [https://hortonworks.com/info/streaming-analytics-manager/](https://hortonworks.com/info/streaming-analytics-manager/)*</center>
+<center><b>Source: [https://hortonworks.com/info/streaming-analytics-manager/](https://hortonworks.com/info/streaming-analytics-manager/)</b></center>
 
 On top of that, you have access to all your streaming data and even some metrics in one single graphical tool. If you are into streaming, watch the session recording as soon as it is up on Youtube (I'll add the link then).
 

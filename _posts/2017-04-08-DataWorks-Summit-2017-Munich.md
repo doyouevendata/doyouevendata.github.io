@@ -10,7 +10,7 @@ I have arrived on Tuesday, 4th April, one day before the conference starts but t
 
 Anyway, for all of you traveling to Munich for the first time. If you happen to get out of your plane and instead of walking into baggage claiming area you are entering the shopping and restaurant zone, don't be worried, that's how it is there ... Your bagge is there somewhere, it's just that somewhere happens to be at the other end of the airport. You have to take a train to get it. I may have not visited a lot of big airports in my life yet, but I have seen few and this was first time I've seen it :) But it could be true (and most probably is) only for the terminal I used, so your expeirence may vary.
 
-![DWS2017 Registration](../images/DWS2017/dws2017_1.jpg)
+![DWS2017 Airport Meme](../images/DWS2017/luggage.jpg)
 
 But let's focus on the main topic. Tuesday was meetups day as I mentioned. There were few of them:
 
@@ -20,6 +20,8 @@ But let's focus on the main topic. Tuesday was meetups day as I mentioned. There
 - Cloud – Running and Securing Hadoop in the Cloud
 - **SAS and Spark on HDP**
 - Solving Cybercrime at Scale and in Realtime
+
+![DWS2017 Registration](../images/DWS2017/dws2017_1.jpg)
 
 I went to the SAS and Spark on HDP which happend to be Spark on HDP as the SAS speaker couldn't make it. Meetup was hosted by Bernhard Walter and Aengus Rooney of Hortonworks. We went through history and how all that data science in a distributed way started. For all of you not that much into hadoop and Spark in particular. The whole fuss about it is not because spark has some extra powerfull algorithms that are not seen in different libraries, it's because Spark works in a distributed way. That means you are not limited to your PC or Server computing power or amount of RAM you have there.
 

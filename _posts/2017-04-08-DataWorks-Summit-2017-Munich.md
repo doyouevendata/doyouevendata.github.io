@@ -51,7 +51,9 @@ Technical and business sessions were held in 6 different rooms simultaneously. T
 
 Good thing about DWS is that most if not all session will be available on YouTube, so you can catch up with those you missed. I strongly encourage you to do so.
 
-Time for quick summaries of some of the sessions I have seen.
+I will sunmmarize some of the sessions I have watched and think were most interesting ones. I think some of them will lead to separate posts related to what was shown on that sessions. So stay tuned for more!
+
+And go and check DataWorks Summit videos that will be posted on Youtube. I will edit the post when they are published and add links to some I will describe below.
 
 ---
 
@@ -59,17 +61,53 @@ Time for quick summaries of some of the sessions I have seen.
 
 If you need to create and then publish dashboards that are built on large amount fo data, then Druid is something you may want to check on. One use case would be for data that you prepare in Spark and then publish in Druid. The advantage of Druid compared to SparkSQL is latency. Druid indexes all its data. So if you need to create visualization layer in your company with large amount of people using it, have a look.
 
+For more information and a benchmar that compares Druid to Spark, [have a look at this post of Harish Butani.](https://www.linkedin.com/pulse/combining-druid-spark-interactive-flexible-analytics-scale-butani) 
+
 ---
 
+**Streaming Analytics Manager**
 
+This is something that I'd like to play around definitelly. You should expect dedicated article some time on the future.
 
+SAM - among others - is a graphical tool that lets you build whole streaming process without need to write a code. Most importantly if at any moment in time schema changes at any place in your process, adjusting it is honestly really easy. Normally you'd have to change code, here you have everything accessible from nice GUI.
 
+![Hortonworks Streaming Analytics Manager](../images/DWS2017/streaming-analytics-manager.png)
+<center>*Source: [https://hortonworks.com/info/streaming-analytics-manager/](https://hortonworks.com/info/streaming-analytics-manager/)*</center>
 
+On top of that, you have access to all your streaming data and even some metrics in one single graphical tool. If you are into streaming, watch the session recording as soon as it is up on Youtube (I'll add the link then).
 
+This is not yet production ready mind you.
 
+---
 
+**Machine Learning in Healthcare**
 
+Some of the session were not about particular tools, new releases, new functionalities. They were about real life examples how Big Data Technologies helped or allowed for businesses to grow or helped scientists or doctors be more precise and much faster in their work.
 
+One of that session was held by Wade Schulz, Physician Scientist and Clinical Pathology Resident at Yale School of Medicine. Wade is also lead architect of Big Data platform at mentioned School that also operates one of the largest hospitals in US, Yale-New Haven Hospital.
 
+He gave an example of how they learned to use that possibilities of new technologies. One of the most often laboratory test made in hospitals around the world is [peripheral blood smear](http://www.healthline.com/health/blood-smear#overview1). Blood sample is put on a glass and checked using microscope. Depending on anomalies found a diagnose could be made. Normally tests are subject to human eye perceptivity and its owner experience. In a hospital such as this there are hundreds of those tests made daily. Due to its nature it requires a lot of personel and time to be involved.
 
+![DWS2017 Algorithmical analysis of peripheral blood smear](../images/DWS2017/dws2017_4.jpg)
 
+Dr Schulz and his team work on a Machine Learning model that will analyse images of monolayer containing the tests data. It is now during acceptance tests of sort but already is much more accurate and much faster than current way of doing the tests. Eventually approval by a physician may still be needed to accept the result of an algorithm, but even then the gains could be significant. Mostly in terms of time needed for tests results and that can lead to more lifes saved.
+
+Each new technologies can be used for bad or good thing. This definitelly is an example of the later.
+
+I wonder if similar research is done at any European hospitals or Laboratory centers. If you know about any, please let us know!
+
+---
+
+I have seen more sessions, plan to watch even more once they are available on Youtube. And you will see dedicated posts about some of the concepts and tools which are not described in this article.
+
+A good summary for this year DataWorks Summit may be the fact that a lot of use cases, real life examples and development seem to go toward streaming and IoT technologies. Batch processing will be taken over by streaming quite soon Laregely due to IoT and there, automotive seem to be the main actor.
+
+BMW and their Big Data Team lead held a session about they're journey, where they are and what still needs to be done. Especially given the fact they are part of big international organization where processes makes some things happen slower than at a startup for instance. Anyway, the message was clear. BMW sells almost 2 millions cars each year. Each of them is now "connected". This is huge amount of data to tranfer, store and anlyze. Cars soon will not only send data to central, they will communicate with each other and with the surroundings. Their sensor will (and some already are) use advanced AI algorithms to drive the cars by themselves. This all will be possible thanks to development in Big Data technologies.
+
+![DWS2017 BMW Self Driving Car Concept](../images/DWS2017/bmw.jpg)
+
+Tobias Buerger who gave that speach shared also experience he and his team had and what are their lessons learned. I can only recommend to watch his pannel so much to every team leads, managers and CTOs who have something to do with new technologies, Big Data in particular. Some of the most important experience they have (that's something so obvious it's hard to imagine someone would not know it, and yet...) were:
+
+- Make sure you have a great team! From my own experience too, yes, this is important, so much, really.
+- Be prepared for immaturity. In so dynamic environment as anything related to Big Data - yes. Don't expect enterpise grade, production ready everything. Sometimes you may need to choose between environment tested for years that will need a month to analyze your data and environment which may not have that much maturity, but will perform the analysis in 5 minutes. The choice is yours.
+- Be prepated for pitfalls, it happens.

@@ -266,3 +266,4 @@ ___
 Note that regional mean anomalies (in particular global anomalies) are not computed from the current absolute mean and the 1951-80 mean for that region, but from station temperature anomalies. Finding absolute regional means encounters significant difficulties that create large uncertainties. This is why the GISS analysis deals with anomalies rather than absolute temperatures. For a more detailed discussion of that topic, please see "The Elusive Absolute Temperature". (<a href="https://data.giss.nasa.gov/gistemp/faq/#q101">SOURCE</a>)
 </p>
 
+<p align="right"><br><br>ymra</p>

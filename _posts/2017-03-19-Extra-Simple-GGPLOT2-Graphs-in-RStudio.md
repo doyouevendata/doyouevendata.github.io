@@ -260,10 +260,12 @@ ggplot( data=nasa.reshaped, aes( x=Month, y=Deviation, group=Year, colour=Year )
 
 The graph we received is nice, clean and informative (I hope so). That would be all for now! :)
 
+
+<p align="right"><br><br>ymra</p>
 ___
 <p align="justify">
 *<b>Temperature anomalies</b> indicate how much warmer or colder it is than normal for a particular place and time. For the GISS analysis, normal always means the average over the 30-year period 1951-1980 for that place and time of year. This base period is specific to GISS, not universal. But note that trends do not depend on the choice of the base period: If the absolute temperature at a specific location is 2 degrees higher than a year ago, so is the corresponding temperature anomaly, no matter what base period is selected, since the normal temperature used as base point is the same for both years.
 Note that regional mean anomalies (in particular global anomalies) are not computed from the current absolute mean and the 1951-80 mean for that region, but from station temperature anomalies. Finding absolute regional means encounters significant difficulties that create large uncertainties. This is why the GISS analysis deals with anomalies rather than absolute temperatures. For a more detailed discussion of that topic, please see "The Elusive Absolute Temperature". (<a href="https://data.giss.nasa.gov/gistemp/faq/#q101">SOURCE</a>)
 </p>
 
-<p align="right"><br><br>ymra</p>
+

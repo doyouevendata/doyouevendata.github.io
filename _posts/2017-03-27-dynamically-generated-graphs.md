@@ -6,76 +6,7 @@ title: Graphs generated dynamically on hover (using R, shiny and plotly)
 Hello! Recently I was asked to create an R program showing one graph and dynamically generating another using the information about mouse position over the first graph. It is not as difficult as I thought, so here's the tutorial.
 </p>
 
-<style>
-   .tabs {
-	position: relative;
-	min-height: 650px;
-	/* This part sucks */
-	clear: both;
-	margin: 25px 0;
-	font-family: 'Helvetica';
-}
-.tab {
-	float: left;
-}
-.tab label {
-	background: none;
-	padding: 10px;
-	cursor: pointer;
-	margin-left: -1px;
-	position: relative;
-	left: 1px;
-	background: none;
-	color: #808080;
-	border-style: solid;
-	border-width: 1px 1px 1px 1px;
-	border-color: #ddd;
-	border-radius: 5px 5px 0px 0px;
-	border-bottom-color: white;
-	padding: 11px;
-	padding-bottom: 5px;
-}
-.tab [type=radio] {
-	display: none;
-}
-.content {
-	position: absolute;
-	height: 100%;
-	top: 28px;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	padding: 20px;
-	font-family: 'Droid Sans Mono', monospace;
-	background: white;
-	margin: 0px 0px 10px 0px;
-	text-align: left;
-	font-size: 11px;
-	line-height: 1.2;
-	overflow: auto;
-	white-space: pre;
-	border-top: 1px solid #ddd;
-}
-[type=radio]:checked~label {
-	background: white;
-	border-bottom: 1px solid white;
-	z-index: 2;
-}
-[type=radio]:checked~label~.content {
-	z-index: 1;
-}
-pre {
-	background: #f5f5f5;
-	margin: 10px 0px 10px 0px;
-	text-align: left;
-	font-size: 11px;
-	line-height: 1.2;
-	overflow: auto;
-	white-space: pre;
-	box-shadow: 5px 5px 0 #DDD;
-	padding: 10px;
-}
-</style>
+
 
 
 #### What we wanna achieve?
@@ -248,7 +179,76 @@ So to sum this part up, this is what your `output$plot2` should look like:
 ```
 
 <p align="justify">Are you ready to see the final result? Put your mouse pointer over the graph!</p>
-
+<style>
+   .tabs {
+	position: relative;
+	min-height: 650px;
+	/* This part sucks */
+	clear: both;
+	margin: 25px 0;
+	font-family: 'Helvetica';
+}
+.tab {
+	float: left;
+}
+.tab label {
+	background: none;
+	padding: 10px;
+	cursor: pointer;
+	margin-left: -1px;
+	position: relative;
+	left: 1px;
+	background: none;
+	color: #808080;
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	border-color: #ddd;
+	border-radius: 5px 5px 0px 0px;
+	border-bottom-color: white;
+	padding: 11px;
+	padding-bottom: 5px;
+}
+.tab [type=radio] {
+	display: none;
+}
+.content {
+	position: absolute;
+	height: 100%;
+	top: 28px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 20px;
+	font-family: 'Droid Sans Mono', monospace;
+	background: white;
+	margin: 0px 0px 10px 0px;
+	text-align: left;
+	font-size: 11px;
+	line-height: 1.2;
+	overflow: auto;
+	white-space: pre;
+	border-top: 1px solid #ddd;
+}
+[type=radio]:checked~label {
+	background: white;
+	border-bottom: 1px solid white;
+	z-index: 2;
+}
+[type=radio]:checked~label~.content {
+	z-index: 1;
+}
+pre {
+	background: #f5f5f5;
+	margin: 10px 0px 10px 0px;
+	text-align: left;
+	font-size: 11px;
+	line-height: 1.2;
+	overflow: auto;
+	white-space: pre;
+	box-shadow: 5px 5px 0 #DDD;
+	padding: 10px;
+}
+</style>
 <iframe src="https://ymra.shinyapps.io/online/" style="width:100%; height:800px;"></iframe>
 
 You can reviev the files below, or on <a href="https://github.com/ymra/dynamic_histogram">my github</a>.

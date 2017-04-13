@@ -25,7 +25,7 @@ We're gonna create a simple R application showing annual and monthly average tem
 - data
 
 <p align="justify">
-You can download data files from <a href="doyouevendata.github.io/images/dynamic_histogram/annual.csv">here</a> and <a href="doyouevendata.github.io/images/dynamic_histogram/monthly.csv">here</a>. These are excel sheets prepared from the data availaible on NASA page (<a href="https://data.giss.nasa.gov/gistemp/">link</a>). Nasa's data looks like that:
+You can download data files from <a href="https://github.com/ymra/dynamic_plots/blob/master/annual.csv">here</a> and <a href="https://github.com/ymra/dynamic_plots/blob/master/monthly.csv">here</a>. These are excel sheets prepared from the data availaible on NASA page (<a href="https://data.giss.nasa.gov/gistemp/">link</a>). Nasa's data looks like that:
 </p>
 ![image_sketch](/images/dynamic_histogram/all_table.png)
 <p align="justify">
@@ -251,7 +251,7 @@ pre {
 </style>
 <iframe src="https://ymra.shinyapps.io/online/" style="width:100%; height:800px;"></iframe>
 
-You can reviev the files below, or on <a href="https://github.com/ymra/dynamic_histogram">my github</a>.
+You can reviev the files below, or on <a href="https://github.com/ymra/dynamic_plots">my github</a>.
 <div class="tabs">
     
    <div class="tab">

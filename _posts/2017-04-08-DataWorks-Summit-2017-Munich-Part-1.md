@@ -1,6 +1,7 @@
 ---
 layout: post
 title: DataWorks Summit 2017 - Munich - Part 1
+comments: true
 ---
 <p align="justify">April 4th, 5th and 6th 2017, Munich, Germany hosted DataWorks Summit (or as previously called Hadoop Summit). This is a conference organized by Hortonworks and Yahoo. It's about Hadoop, Big Data and Open Source community.</p>
 

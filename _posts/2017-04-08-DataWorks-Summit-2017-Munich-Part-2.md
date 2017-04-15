@@ -1,6 +1,7 @@
 ---
 layout: post
 title: DataWorks Summit 2017 - Munich - Part 2
+comments: true
 ---
 In part 1 I have summarized keynote and its most interresting parts, in part 2 I will summarize some of the session I found most interessting.
 

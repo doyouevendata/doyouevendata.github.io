@@ -59,6 +59,8 @@ title: DataWorks Summit 2017 - Munich
 
 <p align="justify">During keynote a panel with experts took place too. Most interresting thing I remember from it is what Daljit Rehal of Centrica said about how the work culture changed in his company. Data driven projects are very demanding in terms of skilled engineers. At Centrica some cultural changes had to take place so that employees can focus on actuall work instead of figuring out how they should do that work. Motivation for self development is also a key factor. So the approach changed from centrally managed environment to more people centric approach. For instance if you work at Centrica and already has preffered language you code in, if only it can be used - you are free to do it. I am aware this is not always possible but in project so much oriented on Open Source solutions, this is very much possible and most probably the only way to go. As for motivating people for self development. Engineers at centrica are encourages to give lectures at local Universities which gives them strong motivation factor to be prepared I suppose ;)</p>
 
+<p align="justify">You can watch the keynote <a href="https://www.youtube.com/watch?v=8CVq8H7DcEA">here</a>.</p>
+
 <p align="justify">Technical and business sessions were held in 6 different rooms simultaneously. This was the toughest part of the summit, how on earth are you suppose to choose if most of them are equally interesting?</p>
 
 <p align="justify">Good thing about DWS is that most if not all session will be available on YouTube, so you can catch up with those you missed. I strongly encourage you to do so.</p>
@@ -73,7 +75,7 @@ title: DataWorks Summit 2017 - Munich
 
 <p align="justify">If you need to create and then publish dashboards that are built on large amount fo data, then Druid is something you may want to check on. One use case would be for data that you prepare in Spark and then publish in Druid. The advantage of Druid compared to SparkSQL is latency. Druid indexes all its data. So if you need to create visualization layer in your company with large amount of people using it, have a look.</p>
 
-<p align="justify">For more information and a benchmark that compares Druid to Spark, have a look at <a href="https://www.linkedin.com/pulse/combining-druid-spark-interactive-flexible-analytics-scale-butani">this</a> post of Harish Butani.</p>
+<p align="justify">For more information and a benchmark that compares Druid to Spark, have a look at <a href="https://www.linkedin.com/pulse/combining-druid-spark-interactive-flexible-analytics-scale-butani">this</a> post of Harish Butani. And you can watch the session recording <a href="https://www.youtube.com/watch?v=OpuTAOCxq1k">here</a></p>
 
 <hr>
 
@@ -111,6 +113,8 @@ title: DataWorks Summit 2017 - Munich
 <p align="justify">Each new technologies can be used for bad or good thing. This definitelly is an example of the later.</p>
 
 <p align="justify">I wonder if similar research is done at any European hospitals or Laboratory centers. If you know about any, please let us know!</p>
+
+<p align="justify">Watch the session <a href="https://www.youtube.com/watch?v=q077QjZ31XU">here</a>.</p>
 
 <hr>
 

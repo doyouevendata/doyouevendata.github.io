@@ -68,3 +68,5 @@ title: DataWorks Summit 2017 - Munich - Part 1
 <p align="justify">In next part I will sunmmarize some of the sessions I have watched and think were most interesting ones. I think some of them will lead to separate posts related to what was shown on that sessions. So stay tuned for more!</p>
 
 <p align="justify">And go and check DataWorks Summit videos that are posted on <a href="https://www.youtube.com/channel/UCwK6I35T8UXvOw7qCu-IwPw">Youtube</a></p>
+
+<p align="right"><br><br>mrc</p>

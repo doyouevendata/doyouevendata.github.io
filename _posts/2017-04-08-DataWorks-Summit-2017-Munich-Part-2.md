@@ -106,3 +106,5 @@ Again, there were many more at least as entertaining, check the <a href="https:/
 	<li>Be prepared for immaturity. In so dynamic environment as anything related to Big Data - yes. Don't expect enterpise grade, production ready everything. Sometimes you may need to choose between environment tested for years that will need a month to analyze your data and environment which may not have that much maturity, but will perform the analysis in 5 minutes. The choice is yours.</li>
 	<li>Be prepated for pitfalls, it happens.</li>
 </ul>
+
+<p align="right"><br><br>mrc</p>

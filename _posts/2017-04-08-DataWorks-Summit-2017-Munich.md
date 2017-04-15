@@ -2,7 +2,7 @@
 layout: post
 title: DataWorks Summit 2017 - Munich
 ---
-<p align="justify">April 4th, 5th and 6th 2017, Munich, Germany was good place to be. DataWorks Summit (or as previously called Hadoop Summit) is a conference organized by Hortonworks and Yahoo. It is about Hadoop, Big Data and Open Source community.</p>
+<p align="justify">April 4th, 5th and 6th 2017, Munich, Germany hosted DataWorks Summit (or as previously called Hadoop Summit). This is a conference organized by Hortonworks and Yahoo. It's about Hadoop, Big Data and Open Source community.</p>
 
 <p align="justify">This year I've had a chance to be there for the first time and figured I will share my thoughts about the event and things around it.</p>
 
@@ -114,7 +114,41 @@ title: DataWorks Summit 2017 - Munich
 
 <hr>
 
-<p align="justify">I have seen more sessions, plan to watch even more once they are available on Youtube. And you will see dedicated posts about some of the concepts and tools which are not described in this article.</p>
+<h3>Real-Time Anomaly Detection Using LSTM Auto-Encoders with DeepLearning4J on Apache Spark</h3>
+
+<p align="justify">Session was held by Romeo Kienzler of IBM. Topic is very on time, the panel was about Machine Learning, well it's subclass in fact - Deep Learning, it was about IoT too, which is the next big thing in IT. I know, we have heard that for many years now... The thing is, technology seems to be now at the level that actually allows for this to grow to its real potential.</p>
+
+<p align="justify">Romeo explained Deep Learning concepts, so we had a quick recap of Neural Networks, how they work and how they are used in Deep Learning.</p>
+
+<p align="justify">Deep Learning is good at solving mathematical problems, not so much at recognizing sequences, and that is big thing of IoT, where Time based sequences are rather very common.</p> 
+
+<p align="justify">This is where LSTM comes handy.<a href="https://en.wikipedia.org/wiki/Long_short-term_memory">So Long Short Term Memory</a> adds memory, long term memory in fact to neural networks. Thanks to that you can recognize and process sequences.</p>
+
+<p align="justify">One example shown was where algorithm was teached using Shakespir literature and then it could write poems ;). Or when algorithm was teached to write C code like text ^^.</p>
+
+<p align="justify">The main topic was Anomaly Detection though. If you're into it, watch the video! One example I can think of using this would be for instance for power grids. Normally, power consumption is something we can predict. There are very simillar trends based on what day of a week it is, what time and what season. I can think of using Deep Learning and LSTM in particular to build very good anomaly detection model that can alert the maintenance teams of something unexpected happening.</p>
+
+<p align="justify">Other example, if you manage Data Center systems, storage for instance, there would be some trends there too. Would be interesting to see if we can use this to detect anomalies which could help finding out something happens to the infrastructure. This can be also used for forecasting and in storage area - as an example - it could be a real help for all of you trying so hard to determine what is the best oversubscription policy and when you should buy additional disks. You can watch the recording of the session <a href="https://www.youtube.com/watch?v=qqL2pVzV5FQ">here</a>.</p>
+
+<hr>
+
+<h3>Hops Hadoop and its HSFS (Hops FS) performance</h3>
+
+<p align="justify">One of the thoughts I have had after the conference was that USA is really ahead of Europe in Data world. It really looks like it. I supose we will catch up sooner or later hopefully, nevertheless for now we are lagging behind.</p>
+
+<p align="justify">Hops Hadoop is one example where an European project found a spot for itself. Hops is the only European Hadoop distribution apparently.</p>
+
+<p align="justify">Jim Dowling of KTH Royal Institute of Technology in Stockholm shows new approach for Namenodes architecture. If you're into Hadoop world you must have thought about it before and things are kind of tricky with Namenode in HDFS. You can read more about it <a href="http://blog.cloudera.com/blog/2014/03/a-guide-to-checkpointing-in-hadoop/">here</a>.</p>
+
+<p align="justify">So HopsFS reengineered NameNode from scratch while maintaining almost 100% compatibility with standard HDFS clients. Instead of keeping all metadata in memory, checkpoints in fsimage and recent changes in edit log they keep all that data in MySQL in memory Database Cluster that is build with a distributed approach. That means HSFS clients can write to HSFS in pararell. This is not the case with standard HDFS architecture, where each write operation triggers system wide lock that prevents more than one write operation to happen at a time.</p>
+
+<p align="justify">This seems to have quite significant impact on performance in large clusters. Please watch the <a href="https://www.youtube.com/watch?v=mTRsrjH5WLI">video</a> for benchmark data and examples, but if you use large cluster and HDFS performance is a problem for you, this might be something you want to try as Spotify did aparently. I wonder thugh if they still use it, from what I know they have moved to Google Cloud (or are being in the process of tranistion).</p>
+
+<p align="justify">One last comment, apart from performance, amount of medatada you can store with HSFS is much higher. In HDFS there is upper limit due to the fact all that data needs to be keept in JVM memory.</p>
+
+<hr>
+
+<p align="justify">I have seen more sessions, plan to watch even more on Youtube. And you will see dedicated posts about some of the concepts and tools which are not described in this article.</p>
 
 <p align="justify">A good summary for this year DataWorks Summit may be the fact that a lot of use cases, real life examples and development seem to go toward streaming and IoT technologies. Batch processing will be taken over by streaming quite soon Laregely due to IoT and there, automotive seem to be the main actor.</p>
 

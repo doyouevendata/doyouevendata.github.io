@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: Playing with NASA’s Global Mean Estimates and Simple GGPLOT2 Graphs in RStudio
 ---
 <p align="justify">

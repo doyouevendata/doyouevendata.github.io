@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: Beautifying plotly graphs in R.
 ---
 <p align="justify">Hello!

@@ -1,5 +1,6 @@
 ---
 layout: post
+comments: true
 title: Graphs generated dynamically on hover (using R, shiny and plotly)
 ---
 <p align="justify">

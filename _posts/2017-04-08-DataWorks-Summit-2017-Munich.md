@@ -148,6 +148,8 @@ title: DataWorks Summit 2017 - Munich
 
 <hr>
 
+<h3>Summary</h3>
+
 <p align="justify">I have seen more sessions, plan to watch even more on Youtube. And you will see dedicated posts about some of the concepts and tools which are not described in this article.</p>
 
 <p align="justify">A good summary for this year DataWorks Summit may be the fact that a lot of use cases, real life examples and development seem to go toward streaming and IoT technologies. Batch processing will be taken over by streaming quite soon Laregely due to IoT and there, automotive seem to be the main actor.</p>

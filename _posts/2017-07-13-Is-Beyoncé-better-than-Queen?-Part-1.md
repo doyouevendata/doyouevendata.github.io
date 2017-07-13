@@ -8,7 +8,7 @@ title: Is Beyoncé better than Queen? - Part 1.
 
 Hey guys! I was recently scrolling through some memes and came across this:
 <p align="center">
-  <img src="/images/bey_vs_queen/beyonce-vs-mercury.jpg">
+  <img src="/images/bey_vs_queen/bijons.jpg">
 </p>
 
 <p align="justify">You have surely seen this before, haven't you? I like Beyoncé. Like, a lot. But I'm also aware that nowadays popular music is not so sophisticated. Is it? What a great question we can answer right now with a little analytic skills! Let's go and check, if Freddie Mercury's texts are FAR better than those of Beyoncé (what my boyfriend is constantly pointing out to me, so yes, I will be doing this analysis only to throw it at his face saying "AHHHAAAAAA!". Back to the post now.)</p>

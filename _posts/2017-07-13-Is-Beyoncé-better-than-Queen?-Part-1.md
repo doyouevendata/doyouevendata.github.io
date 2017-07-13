@@ -83,7 +83,7 @@ colnames(lyrics)
 [1] "index"  "song"   "year"   "artist" "genre"  "lyrics"
 ```
 
-<p align="justify">From the above we know that first dataset is composed from 4 columns, "artist" "song", "link" and  "text", all of them are factor type. Second dataset has 6 columns, "index"  "song"   "year"   "artist" "genre" and "lyrics", also factors apart from index, which is an integer. we won't need index and link columns, so we will delete them from the subsets. Also, we would like to change factor type  to string in the "artist" columns in subsets, you will see why.</p>
+<p align="justify">From the above we know that first dataset is composed from 4 columns, "artist", "song", "link" and  "text", all of them are factor type. Second dataset has 6 columns, "index", "song", "year", "artist", "genre" and "lyrics", also factors, apart from index, which is an integer. We won't need index and link columns, so we will delete them from the subsets. Also, we would like to change factor type to string in the "artist" columns in subsets, you will see why.</p>
 
  3. Look for Beyoncé and Queen and substract them:
 

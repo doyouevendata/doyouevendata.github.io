@@ -31,7 +31,7 @@ What should we do:
 
 <p align="justify">Then, we have to launch RStudio, load the data, inspect it, clear it, and prepare the subsets that will be analysed.</p>
 
-1. Load the data:
+ 1. Load the data:
 
 ```
 setwd("C:/computor/directory_with_your_downloaded_data/")
@@ -39,7 +39,7 @@ songdata <- read.csv(file="songdata.csv")
 lyrics <- read.csv(file="lyrics.csv")
 ```
 
-2. Inspect it:
+ 2. Inspect it:
 
 ```
 str(songdata)
@@ -85,7 +85,7 @@ colnames(lyrics)
 
 <p align="justify">From the above we know that first dataset is composed from 4 columns, "artist" "song", "link" and  "text", all of them are factor type. Second dataset has 6 columns, "index"  "song"   "year"   "artist" "genre" and "lyrics", also factors apart from index, which is an integer. we won't need index and link columns, so we will delete them from the subsets. Also, we would like to change factor type  to string in the "artist" columns in subsets, you will see why.</p>
 
-3. Look for Beyoncé and Queen and substract them:
+ 3. Look for Beyoncé and Queen and substract them:
 
 <p align="justify">Both datasets contain the "artist" column, but we don't know how the names are stored - capital letters? Hyphen, spaces? E in BEYONCE has an accent, is it considered? Instead of looking for the value equal to "Beyonce" or "Queen" we will grep the column searching for string that matches. Then, we will copy found rows into new datasets and clear them.</p>
 
@@ -102,7 +102,7 @@ queen <- songdata[grep("queen", songdata$artist, ignore.case = TRUE),]
 beyonce <- lyrics[grep("beyonc", lyrics$artist, ignore.case = TRUE),]
 ```
 
-4. Clear data subsets:
+ 4. Clear data subsets:
 
 Let's check what artists did we found using `grep`:
 

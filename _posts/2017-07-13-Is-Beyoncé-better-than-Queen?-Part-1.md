@@ -103,6 +103,10 @@ beyonce <- lyrics[grep("beyonc", lyrics$artist, ignore.case = TRUE),]
 ```
 
  4. Clear data subsets:
+ 
+ <p align="center">
+  <img src="/images/bey_vs_queen/clear.jpg">
+</p>
 
 Let's check what artists did we found using `grep`:
 

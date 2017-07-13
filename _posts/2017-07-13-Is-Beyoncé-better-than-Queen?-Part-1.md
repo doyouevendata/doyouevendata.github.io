@@ -24,12 +24,12 @@ What should we do:
 - Lyrics of Beyoncé's songs
 - RStudio and some special libraries
  
- ## Part 1 - Clearing the data.
+## Part 1 - Clearing the data.
 
 ##### Let's go!
 <p align="justify">For lyrics, you can go to <a href="https://www.kaggle.com/gyani95/380000-lyrics-from-metrolyrics">this</a> Kaggle site and download the 99Mb dataset that contains Beyoncé's songs, and then to <a href="https://www.kaggle.com/mousehead/songlyrics">this</a> Kaggle site that contains dataset with Queen's songs.</p>
 
-<p align="justify">Then, we have to launch RStudio, load the data, inspect it, clear it, and prepare the subsets that will be analysed.</a>
+<p align="justify">Then, we have to launch RStudio, load the data, inspect it, clear it, and prepare the subsets that will be analysed.</p>
 
 1. Load the data:
 

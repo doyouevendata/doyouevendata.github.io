@@ -493,3 +493,7 @@ wordcloud(names(freqb), freqb, max.words=100, rot.per=0.2, colors=GnBu)
 
 
 Last but not least, all information gathered on one infographic.
+
+<p align="center">
+  <img src="/images/bey_vs_queen/graphic.png">
+</p>

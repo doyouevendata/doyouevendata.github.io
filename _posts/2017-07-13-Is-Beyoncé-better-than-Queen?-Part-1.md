@@ -404,7 +404,7 @@ plot_ly(piechart, labels = mood, values = ~Beyonce, type = 'pie',
   <img src="/images/bey_vs_queen/mood.jpg">
 </p>
 
-Number of songs per artist:
+Number of words per artist:
 ```
 plot_ly(
   x = c("Queen", "Beyonce"),

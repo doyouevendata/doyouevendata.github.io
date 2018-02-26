@@ -1,0 +1,67 @@
+---
+layout: post
+comments: true
+title: Setting up direct stream from Kafka to Amazon S3 bucket using Kafka Connect.
+---
+
+Hello!
+<p align="justify">
+Here we will learn how to set up a Kafka Connector that will put messages from Kafka to S3 bucket on Amazon.
+</p>
+
+First things first:
+
+1. Create a bucket on Amazon and add a policy.
+On the S3 console page got o: YourBucket -> Permissions tab -> Bucket Policy button.
+
+```
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "statement1",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::userID:user/username"
+            },
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:ListBucket"
+            ],
+            "Resource": "arn:aws:s3:::bucketName"
+        },
+        {
+            "Sid": "statement2",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::userID:user/username"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::bucketName/*"
+        }
+    ]
+}
+```
+
+2. Create an AWS user and add user's inline policy.
+On the IAM console go to : Users -> youUser ->  Permissions tab -> Add inline policy button
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "PermissionForObjectOperations",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::bucketName/*"
+            ]
+        }
+    ]
+}
+```
+3. Set up a machine with Kafka Connect software

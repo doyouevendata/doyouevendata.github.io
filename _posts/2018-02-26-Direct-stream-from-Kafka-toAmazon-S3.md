@@ -118,3 +118,5 @@ curl -s -X POST -H "Content-Type: application/json" --data '
 }
  }' http://127.0.0.1:8083/connectors
  ```
+<p align="justify">
+There. It was not so complicated, wasn't it? Actually, it took us some time to define the final config, but we never touched KafkaConnect or S3 before, so..... much googling ;)</p>

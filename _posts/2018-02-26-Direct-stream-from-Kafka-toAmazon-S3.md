@@ -12,7 +12,7 @@ Hello! Here we will learn how to set up a Kafka Connector that will put messages
 First things first:
 
 1. Create a bucket on Amazon and add a policy.
-On the S3 console page got o: YourBucket -> Permissions tab -> Bucket Policy button.
+On the S3 console page go to: YourBucket -> Permissions tab -> Bucket Policy button.
 
 ```
 
@@ -45,7 +45,7 @@ On the S3 console page got o: YourBucket -> Permissions tab -> Bucket Policy but
 ```
 
 2. Create an AWS user and add user's inline policy.
-On the IAM console go to : Users -> youUser ->  Permissions tab -> Add inline policy button
+On the IAM console go to : Users -> yourUser ->  Permissions tab -> Add inline policy button
 
 ```
 {

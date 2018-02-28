@@ -1,12 +1,15 @@
 ---
 layout: post
 comments: true
-title: Setting up direct stream from Kafka to Amazon S3 bucket using Kafka Connect.
+title: IJL - Setting up direct stream from Kafka to Amazon S3 bucket using Kafka Connect.
 ---
 
 
 <p align="justify">
-Hello! Here we will learn how to set up a Kafka Connector that will put messages from Kafka to S3 bucket on Amazon.
+Hello! I start new type of posts here, called IJL: I Just Learnt. So I'm gonna treat this little blog as a notebook and kind of diary of my proffessional (and also really not proffessional) journey. Yay!</p>
+
+<p align="justify">
+Here we will learn how to set up a Kafka Connector that will put messages from Kafka to S3 bucket on Amazon.
 </p>
 
 First things first:
